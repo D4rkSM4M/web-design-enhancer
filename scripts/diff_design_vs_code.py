@@ -203,16 +203,31 @@ class CodeAnalyzer:
             self.font_refs.add(m.group(2).strip())
 
         # Durées d'animation — CSS transitions/animations + GSAP
-        # CSS : transition: all 300ms, animation: x 0.5s
-        for m in re.finditer(r"(?:transition|animation)[^;{]*?(\d+)ms", content):
-            self.anim_durations.append((int(m.group(1)), f"{path.name}"))
-        for m in re.finditer(r"(?:transition|animation)[^;{]*?(\d+(?:\.\d+)?)s\b", content):
-            self.anim_durations.append((int(float(m.group(1)) * 1000), f"{path.name}"))
-        # GSAP : duration: 0.4 / gsap.to(el, { duration: 0.8
-        for m in re.finditer(r"duration\s*:\s*(\d+(?:\.\d+)?)", content):
+        #
+        # Distinction fondamentale :
+        #   UI transitions  → transition: all 200ms  (soumises à la règle ≤ max_anim_ms)
+        #   Animations déco → animation: mesh 28s    (fond, loaders, ambiance — exemptées)
+        #
+        # Règle : on ne vérifie que les "transition:" et "duration:" GSAP.
+        # Les "@keyframes" et "animation:" longues sont des animations décoratives — exemptées.
+
+        # 1. CSS transitions (UI uniquement)
+        for m in re.finditer(r"\btransition\b[^;{]*?(\d+)ms", content):
+            self.anim_durations.append((int(m.group(1)), f"{path.name} [transition]"))
+        for m in re.finditer(r"\btransition\b[^;{]*?(\d+(?:\.\d+)?)s\b", content):
+            ms = int(float(m.group(1)) * 1000)
+            if ms < 10000:  # > 10s = clairement décoratif, skip
+                self.anim_durations.append((ms, f"{path.name} [transition]"))
+
+        # 2. GSAP duration (transitions UI orchestrées — pas les timelines de fond)
+        for m in re.finditer(r"\bduration\s*:\s*(\d+(?:\.\d+)?)", content):
             val = float(m.group(1))
             ms  = int(val * 1000) if val < 10 else int(val)
-            self.anim_durations.append((ms, f"{path.name}"))
+            if ms < 5000:  # > 5s = animation de fond/timeline longue, skip
+                self.anim_durations.append((ms, f"{path.name} [gsap]"))
+
+        # Note : "animation: mesh 28s", "@keyframes", "animation-duration: 28s"
+        # sont intentionnellement ignorés — animations décoratives de fond.
 
 
 # ─── Diff Engine ──────────────────────────────────────────────────────────────
