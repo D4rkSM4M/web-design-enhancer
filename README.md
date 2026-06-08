@@ -2,143 +2,65 @@
 
 **Eliminate AI visual improvisation — deliver clean, precise, professional interfaces.**
 
----
+A Claude Code skill (also runnable from Codex, OpenCode, Antigravity) that enforces a machine-verifiable `DESIGN.md` contract. Every rule is validated by a Python script before code is generated, so the agent cannot produce "AI slop" patterns — decorative emojis, cliche gradients, glassmorphism, improvised dark modes, broken 8px grids, WCAG violations, Three.js antipatterns, etc.
 
-## Philosophy: Anti-"AI Slop"
-
-This skill transforms any AI-generated interface into a professional-quality result. It enforces a mechanical rigor that makes producing "AI slop" patterns impossible — even with an unsupervised agent.
-
-**3 core principles:**
-- **Contract before code** — DESIGN.md is mechanically validated before a single line of code is written
-- **Verifiable > subjective** — every design rule is testable by a Python script
-- **Real references > training data** — Phase 0 forces anchoring on existing designs (Stripe, Linear, Vercel...)
+See [`docs/README.md`](./docs/README.md) for the full technical reference (philosophy, 5-phase workflow, scripts, antipatterns, CI/CD, delivery checklist).
 
 ---
 
-## Architecture: 3 Pillars
+## Install
 
-```
-Pillar 1 — getdesign.md           Pillar 2 — UI/UX Pro Max
-(real visual references)          (sectoral intelligence, 161 rules, 67 styles)
-           ↓                                    ↓
-                      DESIGN.md
-                  (design contract)
-                         ↓
-           Pillar 3 — web-design-enhancer-pro
-           (validation + implementation + audit)
-```
+Clone the repo, install Python dependencies:
 
----
-
-## 5-Phase Workflow
-
-### Phase 0 — Anchoring (mandatory, blocking)
 ```bash
-# 1. Get real visual references
-npx getdesign@latest add stripe
+git clone https://github.com/Steph-ux/web-design-enhancer.git
+cd web-design-enhancer
+pip install -r requirements.txt
+```
 
-# 2. Query the UI/UX Pro Max database
+**Prerequisites**: Python 3.10+. No LLM API key required — scripts are deterministic.
+
+### Per AI tool
+
+| Tool | Install location | How to invoke |
+| :--- | :--- | :--- |
+| **Claude Code** | `~/.claude/skills/web-design-enhancer-pro/` | Auto-discovered. Use `/web-design-enhancer` or let Claude detect it |
+| **Codex** (OpenAI CLI) | Clone anywhere | `codex --context ./web-design-enhancer-pro "validate my DESIGN.md"` |
+| **OpenCode** | Clone or add as submodule in the project | `/add SKILL.md` then run `python3 scripts/...` |
+| **Antigravity** (Google) | Clone into the workspace | Load `SKILL.md` as agent context; run scripts in the built-in terminal |
+
+### Optional CI/CD hooks
+
+```bash
+# Husky pre-commit gate
+npx husky install
+chmod +x .husky/pre-commit
+
+# GitHub Actions: .github/workflows/design-gate.yml is already wired up
+```
+
+Both no-op when no `DESIGN.md` is at the repo root.
+
+---
+
+## Quick start
+
+```bash
+# 1. Anchor on real references (mandatory)
+npx getdesign@latest add stripe
 python3 scripts/search.py "saas analytics dashboard" --design-system -p "MyProject"
 
-# 3. Verify Phase 0 was executed
-python3 scripts/check.py --gate 0
-```
+# 2. Fill DESIGN.md from the template
+cp templates/design-md-template.md DESIGN.md
 
-### Phase 1 — DESIGN.md contract
-Fill `DESIGN.md` with §0 through §10 (template: `templates/design-md-template.md`).
-Validated sections: §0 Phase 0 sources, §1–§7 core, **§4 H1/P size ranges** auto-checked, §8 Dark Mode (mandatory if dark background), §9 Mobile (if native app), **§10 Three.js (if WebGL scene — see `references/threejs-best-practices.md`)**.
-```bash
-python3 scripts/check.py --gate 1   # Canonical entry point, invokes validate_design.py
-```
+# 3. Validate the contract
+python3 scripts/check.py --gate 1
 
-### Phase 2 — CSS/HTML implementation
-Map DESIGN.md tokens to `globals.css` or CSS variables.
-
-### Phase 3 — GSAP animations
-Orchestrate entries and scroll effects following `references/gsap-best-practices.md`.
-
-### Phase 4 — Playwright visual audit
-```bash
-python3 scripts/visual_audit.py --url http://localhost:3000 --output ./audit-results
-```
-
-### Phase 5 — Final validation (blocking gate)
-```bash
+# 4. After implementation, run the final gate
 python3 scripts/check.py --final --code ./src
-# Sequence: detect_ai_slop → audit_spacing → validate_design → diff_design_vs_code
 ```
 
----
-
-## Usage by AI tool
-
-The core of this skill is a set of **agent-agnostic Python scripts** — they run in any terminal. Only the way `SKILL.md` is loaded changes per tool.
-
-| Tool | Install | Run |
-| :--- | :--- | :--- |
-| **Claude Code** | Clone into `~/.claude/skills/web-design-enhancer-pro/` | Auto-discovered. Invoke via `/web-design-enhancer` or let Claude detect it |
-| **Codex** (OpenAI CLI) | Clone anywhere | Point Codex at the repo: `codex --context ./web-design-enhancer-pro "validate my DESIGN.md"`. Scripts run via Bash |
-| **OpenCode** | Clone into the project or add as a submodule | Reference `SKILL.en.md` in context (`/add SKILL.en.md`) then run `python3 scripts/...` |
-| **Antigravity** (Google) | Clone into the workspace | Load `SKILL.en.md` as agent context; scripts run via the built-in terminal |
-
-**Common prerequisites**: Python 3.10+, `pip install -r requirements.txt`. The scripts depend on no LLM API — they are deterministic and reproducible.
-
----
-
-## Available scripts
-
-| Script | Usage | Role |
-| :--- | :--- | :--- |
-| `validate_design.py` | `DESIGN.md` | Validates §0–8, WCAG AA, dark mode |
-| `detect_ai_slop.py` | `--design` + `--code` | Score AI antipatterns (0–100, threshold 80) |
-| `diff_design_vs_code.py` | `DESIGN.md --code ./src` | Divergences contract ↔ implementation |
-| `audit_spacing.py` | `--path ./src` | 8px grid on real CSS/JSX |
-| `visual_audit.py` | `--url localhost:3000` | Screenshots + Playwright audit on 4 breakpoints |
-| `check.py` | `--gate 0/1/final` | Sequential gate orchestrator |
-| `search.py` | `"query" --domain` | BM25 search across UI/UX Pro Max CSVs |
-
----
-
-## Automatically detected antipatterns
-
-| Antipattern | AI signal | Remedy |
-| :--- | :--- | :--- |
-| Decorative emojis | ✨🚀💡 in code | Radical removal |
-| Generic Lucide icons | sparkles, zap, star, bot, magic | Consistent pack or custom SVG |
-| Cliché gradients | blue→purple, pink→purple | Solid semantic colors |
-| Unrequested status badges | ● LIVE NOW, SYS_STATUS: ONLINE | Remove or justify in §1 |
-| Vague buzzwords | premium, modern, elegant | Precise, measurable descriptions |
-| Uniform typography | font-size: 16px everywhere | Respect §4 hierarchy |
-| Excessive hover | translateY(-8px), 32px shadow | ≤ -4px, discreet shadow |
-| Improvised dark mode | colors invented at generation time | Mandatory §8 section |
-| Forbidden themes | glassmorphism, typewriter effect | Detected and blocked by validate_design |
-| Three.js antipatterns | geometry in animate(), renderer in useEffect, uncapped pixel ratio | Blocked by detect_ai_slop on .js/.ts/.jsx/.tsx |
-
----
-
-## CI/CD integration
-
-Two ready-to-use templates ship with this repo:
-
-- **`.husky/pre-commit`** — runs `check.py --gate 0` then `--gate 1` before every commit.
-  Install with `npx husky install`, then `chmod +x .husky/pre-commit`.
-- **`.github/workflows/design-gate.yml`** — runs gates 0/1 on every PR and the final gate on push to main.
-
-Both no-op gracefully when no `DESIGN.md` is present at the repo root.
-
----
-
-## Delivery checklist
-
-- [ ] `DESIGN.md` §0–8 complete, `check.py --gate 0` passes
-- [ ] `validate_design.py`: 0 errors
-- [ ] `detect_ai_slop.py`: score ≥ 80/100
-- [ ] `diff_design_vs_code.py`: 0 divergences
-- [ ] `audit_spacing.py`: 0 grid violations
-- [ ] `visual_audit.py`: screenshots validated on 4 breakpoints
-- [ ] §8 Dark Mode section present with background < #333 and WCAG AA
-- [ ] `prefers-reduced-motion` in CSS/JS code
-- [ ] Zero decorative emoji, zero cliché gradient, zero unjustified generic icon
+Full workflow, script reference, and antipattern catalog: [`docs/README.md`](./docs/README.md).
 
 ---
 
