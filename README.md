@@ -2,7 +2,11 @@
 
 **Eliminate AI visual improvisation — deliver clean, precise, professional interfaces.**
 
-A tool-agnostic skill that enforces a machine-verifiable `DESIGN.md` contract. Runs in any AI coding agent (Claude Code, Codex, OpenCode, Antigravity, or a plain terminal). Every rule is validated by a deterministic Python script before code is generated, so the agent cannot produce "AI slop" patterns — decorative emojis, cliche gradients, glassmorphism, improvised dark modes, broken 8px grids, WCAG violations, Three.js antipatterns, etc.
+Ever asked an AI to build a UI and gotten back a wall of glossy gradients, random emojis, glassmorphism, and an "improvised" dark mode? This skill stops that.
+
+You write a short `DESIGN.md` (the design contract for your project). A few small Python scripts check it — and the code your AI produces afterwards — against real design rules: 8px grid, WCAG contrast, sane typography, no forbidden tropes, no Three.js antipatterns. If anything drifts, the gate fails and tells you exactly what to fix.
+
+Works the same way in Claude Code, Codex, OpenCode, Antigravity, or just your terminal. No API key, no cloud, no surprise — just Python.
 
 See [`docs/README.md`](./docs/README.md) for the full technical reference (philosophy, 5-phase workflow, scripts, antipatterns, CI/CD, delivery checklist).
 
