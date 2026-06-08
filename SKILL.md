@@ -203,23 +203,13 @@ Validation loop: fix → rerun audit → repeat until zero defect.
 
 ### Phase 5 — Automated Validation (mandatory before delivery)
 
-Run in this order:
+Run the final gate — it orchestrates `detect_ai_slop` → `audit_spacing` → `validate_design` → `diff_design_vs_code` in sequence:
 
 ```bash
-# 1. AI antipattern detection in source code
-python3 scripts/detect_ai_slop.py --design DESIGN.md --code ./client/src
-
-# 2. 8px grid audit on all CSS/TSX/JSX files
-python3 scripts/audit_spacing.py --path ./client/src
-
-# 3. Final DESIGN.md contract validation (includes WCAG AA contrast + dark mode)
-python3 scripts/validate_design.py DESIGN.md
-
-# 4. Diff DESIGN.md ↔ code — verify implementation respects the contract
-python3 scripts/diff_design_vs_code.py DESIGN.md --code ./src
+python3 scripts/check.py --final --code ./src
 ```
 
-If a script returns an error → fix immediately by consulting `references/antipatterns-guide.md` → rerun. **Any output not validated by all 3 scripts is rejected.**
+If the gate fails → fix immediately by consulting `references/antipatterns-guide.md` → rerun. **Any output not validated by the full gate is rejected.**
 
 ---
 
