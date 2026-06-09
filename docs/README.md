@@ -124,13 +124,10 @@ python3 scripts/check.py --final --code ./src
 
 ## CI/CD integration
 
-Two ready-to-use templates ship with this repo:
-
 - **`.husky/pre-commit`** — runs `check.py --gate 0` then `--gate 1` before every commit.
   Install with `npx husky install`, then `chmod +x .husky/pre-commit`.
-- **`.github/workflows/design-gate.yml`** — runs gates 0/1 on every PR and the final gate on push to main.
 
-Both no-op gracefully when no `DESIGN.md` is present at the repo root.
+The pre-commit hook no-ops gracefully when no `DESIGN.md` is present at the repo root.
 
 ---
 
