@@ -84,6 +84,11 @@ CSV_CONFIG = {
         "file": "pttrns-patterns.csv",
         "search_cols": ["pattern_name", "category", "platform", "anatomy"],
         "output_cols": ["pattern_name", "category", "platform", "anatomy", "source", "url"]
+    },
+    "page-flows": {
+        "file": "page-flows-patterns.csv",
+        "search_cols": ["pattern_name", "category", "platform", "anatomy"],
+        "output_cols": ["pattern_name", "category", "platform", "anatomy", "source", "url"]
     }
 }
 
@@ -218,6 +223,7 @@ def detect_domain(query):
         "color": ["color", "palette", "hex", "#", "rgb", "token", "semantic", "accent", "destructive", "muted", "foreground"],
         "chart": ["chart", "graph", "visualization", "trend", "bar", "pie", "scatter", "heatmap", "funnel"],
         "landing": ["landing", "page", "cta", "conversion", "hero", "testimonial", "pricing", "section"],
+        "page-flows": ["user flow", "onboarding flow", "checkout flow", "signup flow", "login flow", "logout flow", "booking flow", "deletion flow", "verification flow", "cancellation flow", "purchase flow", "page flow", "user journey", "account flow", "payment flow", "subscription flow", "invite flow", "comment flow", "share flow", "search flow", "delete account", "verify email", "cancel subscription", "add to cart", "join workspace", "invite friend", "reset password"],
         "product": ["saas", "ecommerce", "e-commerce", "fintech", "healthcare", "gaming", "portfolio", "crypto", "dashboard", "fitness", "restaurant", "hotel", "travel", "music", "education", "learning", "legal", "insurance", "medical", "beauty", "pharmacy", "dental", "pet", "dating", "wedding", "recipe", "delivery", "ride", "booking", "calendar", "timer", "tracker", "diary", "note", "chat", "messenger", "crm", "invoice", "parking", "transit", "vpn", "alarm", "weather", "sleep", "meditation", "fasting", "habit", "grocery", "meme", "wardrobe", "plant care", "reading", "flashcard", "puzzle", "trivia", "arcade", "photography", "streaming", "podcast", "newsletter", "marketplace", "freelancer", "coworking", "airline", "museum", "theater", "church", "non-profit", "charity", "kindergarten", "daycare", "senior care", "veterinary", "florist", "bakery", "brewery", "construction", "automotive", "real estate", "logistics", "agriculture", "coding bootcamp"],
         "style": ["style", "design", "ui", "minimalism", "glassmorphism", "neumorphism", "brutalism", "dark mode", "flat", "aurora", "prompt", "css", "implementation", "variable", "checklist", "tailwind"],
         "ux": ["ux", "usability", "accessibility", "wcag", "touch", "scroll", "animation", "keyboard", "navigation", "mobile"],

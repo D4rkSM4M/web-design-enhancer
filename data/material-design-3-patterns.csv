@@ -1,50 +1,157 @@
 pattern_name,category,platform,anatomy,source,url
-Navigation Bar,Navigation,Android,"Icons, Labels, Selection indicator, Container",Material Design 3,https://m3.material.io/components/navigation-bar
-Navigation Drawer,Navigation,Android/Web,"Header, List items, Selection state",Material Design 3,https://m3.material.io/components/navigation-drawer
-Navigation Rail,Navigation,Android/Web,"Icons, Labels, Floating Action Button",Material Design 3,https://m3.material.io/components/navigation-rail
-Bottom App Bar,Navigation,Android,"Icons, FAB, Container",Material Design 3,https://m3.material.io/components/bottom-app-bar
-Top App Bar,Navigation,Android,"Title, Navigation icon, Action icons",Material Design 3,https://m3.material.io/components/top-app-bar
-Filled Button,Actions,All,"Label, Container, Icon (Optional)",Material Design 3,https://m3.material.io/components/buttons
-Tonal Button,Actions,All,"Label, Container (Lower emphasis), Icon",Material Design 3,https://m3.material.io/components/buttons
-Outlined Button,Actions,All,"Label, Border, Icon",Material Design 3,https://m3.material.io/components/buttons
-Text Button,Actions,All,"Label, Icon",Material Design 3,https://m3.material.io/components/buttons
-Elevated Button,Actions,All,"Label, Shadow, Container",Material Design 3,https://m3.material.io/components/buttons
-Floating Action Button (FAB),Actions,Android,"Icon, Container (Circular/Rounded)",Material Design 3,https://m3.material.io/components/floating-action-button
-Extended FAB,Actions,Android,"Icon, Label, Container",Material Design 3,https://m3.material.io/components/extended-fab
-Icon Button,Actions,All,"Icon, State layer",Material Design 3,https://m3.material.io/components/icon-button
-Segmented Button,Actions,All,"Segments, Labels, Selection state",Material Design 3,https://m3.material.io/components/segmented-buttons
-Card (Elevated/Filled/Outlined),Containment,All,"Container, Content area, Shadow/Border",Material Design 3,https://m3.material.io/components/cards
-Carousel,Containment,All,"Items, Navigation indicators",Material Design 3,https://m3.material.io/components/carousel
-Bottom Sheet,Containment,Android,"Handle, Container, Content area",Material Design 3,https://m3.material.io/components/bottom-sheets
-Side Sheet,Containment,Web/Android,"Container, Content area, Dismissal",Material Design 3,https://m3.material.io/components/side-sheets
-Dialog (Basic/Full-screen),Containment,All,"Title, Content, Action buttons",Material Design 3,https://m3.material.io/components/dialogs
-Divider,Containment,All,"Horizontal/Vertical line",Material Design 3,https://m3.material.io/components/divider
-List Item,Layout,All,"Leading icon/image, Headline, Supporting text, Trailing icon",Material Design 3,https://m3.material.io/components/lists
-Checkbox,Selection,All,"Container, Checkmark, Label",Material Design 3,https://m3.material.io/components/checkbox
-Radio Button,Selection,All,"Circular container, Selection state, Label",Material Design 3,https://m3.material.io/components/radio-button
-Switch,Selection,All,"Track, Thumb, Icon (Optional)",Material Design 3,https://m3.material.io/components/switch
-Slider,Selection,All,"Track, Thumb, Value label",Material Design 3,https://m3.material.io/components/sliders
-Chip (Assist/Filter/Input/Suggestion),Selection,All,"Label, Container, Icon",Material Design 3,https://m3.material.io/components/chips
-Date Picker,Selection/Input,All,"Calendar grid, Input field",Material Design 3,https://m3.material.io/components/date-pickers
-Time Picker,Selection/Input,All,"Clock face, Input field",Material Design 3,https://m3.material.io/components/time-pickers
-Text Field (Filled/Outlined),Selection/Input,All,"Label, Input text, Leading/Trailing icons",Material Design 3,https://m3.material.io/components/text-fields
-Badge,Communication,All,"Container (Small/Large), Label (Large only)",Material Design 3,https://m3.material.io/components/badges
-Snackbar,Communication,All,"Text, Action button (Optional), Container",Material Design 3,https://m3.material.io/components/snackbar
-Tooltip,Communication,All,"Container, Text label",Material Design 3,https://m3.material.io/components/tooltips
-Progress Indicator (Linear/Circular),Communication,All,"Track, Indicator",Material Design 3,https://m3.material.io/components/progress-indicators
-Search,Navigation,All,"Search bar, Input, Results",Material Design 3,https://m3.material.io/components/search
-Tabs,Navigation,All,"Labels, Icons, Selection indicator",Material Design 3,https://m3.material.io/components/tabs
-Menu,Actions,All,"Menu items, Container",Material Design 3,https://m3.material.io/components/menus
-Banner,Communication,Web/Android,"Text, Action buttons, Icon",Material Design 3,https://m3.material.io/components/banners
-Loading Indicator,Communication,All,"Visual animation",Material Design 3,https://m3.material.io/components/loading-indicator
-Search Bar,Navigation,Android,"Container, Input, Leading/Trailing icons",Material Design 3,https://m3.material.io/components/search
-Modal Bottom Sheet,Containment,Android,"Scrim, Sheet container",Material Design 3,https://m3.material.io/components/bottom-sheets
-Standard Bottom Sheet,Containment,Android,"Sheet container",Material Design 3,https://m3.material.io/components/bottom-sheets
-Assist Chip,Selection,All,"Label, Icon",Material Design 3,https://m3.material.io/components/chips
-Filter Chip,Selection,All,"Label, Checkmark icon",Material Design 3,https://m3.material.io/components/chips
-Input Chip,Selection,All,"Label, Remove icon",Material Design 3,https://m3.material.io/components/chips
-Suggestion Chip,Selection,All,"Label",Material Design 3,https://m3.material.io/components/chips
-Filled Text Field,Selection/Input,All,"Label, Input, Bottom line",Material Design 3,https://m3.material.io/components/text-fields
-Outlined Text Field,Selection/Input,All,"Label, Input, Outline border",Material Design 3,https://m3.material.io/components/text-fields
-Primary Tab,Navigation,All,"Label, Icon, Indicator",Material Design 3,https://m3.material.io/components/tabs
-Secondary Tab,Navigation,All,"Label, Indicator",Material Design 3,https://m3.material.io/components/tabs
+Navigation Bar,Navigation,Android,"3-5 destinations with icons + labels, bottom placement, active indicator pill",Material Design 3,https://m3.material.io/components/navigation-bar
+Navigation Drawer,Navigation,Android,"Standard (persistent) or Modal (overlay), list of destinations with icons + labels, rounded corners",Material Design 3,https://m3.material.io/components/navigation-drawer
+Navigation Rail,Navigation,Android,"Vertical sidebar with icons + labels, expanded or collapsed, FAB option",Material Design 3,https://m3.material.io/components/navigation-rail
+Top App Bar,Navigation,Android,"Title + Optional leading icon (menu/back) + Trailing actions (icons)",Material Design 3,https://m3.material.io/components/top-app-bar
+Bottom App Bar,Navigation,Android,"Bottom bar + FAB notch + Action icons + Optional menu",Material Design 3,https://m3.material.io/components/bottom-app-bar
+Tabs,Navigation,Android,"Primary (main destinations) or Secondary (content categories), icons + labels, scrollable",Material Design 3,https://m3.material.io/components/tabs
+FAB,CTA,Android,"Circular button + Icon + Primary/Secondary/Tertiary color + Three sizes (FAB/Medium/Large)",Material Design 3,https://m3.material.io/components/floating-action-button
+Extended FAB,CTA,Android,"Pill-shaped + Icon + Label text + Primary/Secondary/Tertiary color",Material Design 3,https://m3.material.io/components/extended-fab
+Button,CTA,Android,"Text label + Optional leading icon + 5 types (Elevated/Filled/Tonal/Outlined/Text) + 5 sizes",Material Design 3,https://m3.material.io/components/buttons
+Split Button,CTA,Android,"Main action + Dropdown arrow + Related actions menu + Connected shape",Material Design 3,https://m3.material.io/components/split-button
+Button Group,CTA,Android,"Related buttons grouped + Shape-shifting + Bump interactions",Material Design 3,https://m3.material.io/components/button-groups
+Icon Button,CTA,Android,"Icon only + Optional toggle state + Standard/Filled/Tonal/Outlined",Material Design 3,https://m3.material.io/components/icon-buttons
+List,List,Android,"Label text + Supporting text + Leading icon/image + Trailing icon/text + 3 heights (56/72/88dp)",Material Design 3,https://m3.material.io/components/lists
+Expressive List,List,Android,"Segmented style + Highlighted selection + Flexible slots + Standard or segmented",Material Design 3,https://m3.material.io/components/lists
+Card,Content,Android,"Elevated/Filled/Outlined variants + Media + Title + Supporting text + Actions + Optional overflow menu",Material Design 3,https://m3.material.io/components/cards
+Carousel,Content,Android,"Horizontal scroll + Snap behavior + Multi-browse/Multi-browse large/Hero/Uncontained variants",Material Design 3,https://m3.material.io/components/carousel
+Chip,Content/Input,Android,"Assist/Filter/Input/Suggestion variants + Icon + Label + Optional checkmark + Rounded rectangle",Material Design 3,https://m3.material.io/components/chips
+Search Bar,Search,Android,"Search icon + Hint text + Trailing icons + Suggestions list + Contained or divided style",Material Design 3,https://m3.material.io/components/search
+Search View,Search,Android,"Expanded search + Input field + Results list + Clear button + Back arrow",Material Design 3,https://m3.material.io/components/search
+Bottom Sheet,Screen Pattern,Android,"Standard (persistent) or Modal (overlay) + Drag handle + Content + Dismissible + Max-width 640dp",Material Design 3,https://m3.material.io/components/bottom-sheets
+Side Sheet,Screen Pattern,Android,"Persistent or Modal + Right-side placement + Content + Dismissible",Material Design 3,https://m3.material.io/components/side-sheets
+Dialog,Screen Pattern,Android,"Basic (alert) or Full-screen + Title + Content + Actions (1-2 buttons) + Rounded corners",Material Design 3,https://m3.material.io/components/dialogs
+Snackbar,Status,Android,"Brief message + Optional action button + Bottom placement + Auto-dismiss or persistent",Material Design 3,https://m3.material.io/components/snackbar
+Banner,Status,Android,"Icon + Text + Actions (1-2 buttons) + Top placement + Dismissible",Material Design 3,https://m3.material.io/components/banners
+Progress Indicator,Status,Android,"Linear or Circular + Determinate or Indeterminate + Optional label + Track + Indicator",Material Design 3,https://m3.material.io/components/progress-indicators
+Loading Indicator,Status,Android,"Circular spinner + Track + Indicator + Optional label + Brand color",Material Design 3,https://m3.material.io/components/loading-indicator
+Tooltip,Status,Android,"Text label + Arrow pointing to element + Rich variant with icon + Persistent or dismissible",Material Design 3,https://m3.material.io/components/tooltips
+Badge,Status,Android,"Small circle or number + Top-right of icon + Color (error/primary) + Max 2 digits",Material Design 3,https://m3.material.io/components/badges
+Text Field,Input,Android,"Label + Placeholder + Input text + Leading/Trailing icons + Helper text + Error text + 3 variants (Filled/Outlined/Plain)",Material Design 3,https://m3.material.io/components/text-fields
+Date Picker,Input,Android,"Calendar grid + Month/Year selector + Selected date + Range selection + Confirm/Cancel",Material Design 3,https://m3.material.io/components/date-pickers
+Time Picker,Input,Android,"Clock face or Input fields + Hour/Minute + AM/PM + Confirm/Cancel",Material Design 3,https://m3.material.io/components/time-pickers
+Checkbox,Input,Android,"Checked/Unchecked/Indeterminate + Label + Optional error state + Custom color",Material Design 3,https://m3.material.io/components/checkbox
+Radio Button,Input,Android,"Selected/Unselected + Label + Group behavior + Custom color",Material Design 3,https://m3.material.io/components/radio-button
+Switch,Input,Android,"On/Off + Thumb + Track + Optional icons + Custom color",Material Design 3,https://m3.material.io/components/switch
+Slider,Input,Android,"Track + Thumb + Optional value label + Discrete or Continuous + Range option",Material Design 3,https://m3.material.io/components/sliders
+Segmented Button,Input,Android,"2-5 segments + Selected indicator + Single or Multi-select + Optional checkmark",Material Design 3,https://m3.material.io/components/segmented-buttons
+Menu,Navigation/Action,Android,"Vertical list of actions + Optional icons + Dividers + Submenus + Vibrant or Standard color",Material Design 3,https://m3.material.io/components/menus
+Context Menu,Interaction,Android,"Long-press trigger + Actions list + Optional icons + Dismissible",Material Design 3,https://m3.material.io/components/menus
+Divider,Layout,Android,"Horizontal or Vertical + Inset or Full-width + Optional text + Color (outline/primary)",Material Design 3,https://m3.material.io/components/divider
+App Bar,Navigation,Android,"Top bar + Title + Navigation icon + Actions + Optional tabs + Scroll behavior (pinned/collapsing)",Material Design 3,https://m3.material.io/components/app-bars
+Toolbar,Navigation/Action,Android,"Flexible component + Buttons + Controls + Can pair with FAB + Top or Bottom placement",Material Design 3,https://m3.material.io/components/toolbars
+Bottom Navigation,Navigation,Android,"3-5 destinations + Icons + Labels + Active indicator + Bottom placement (legacy name)",Material Design 3,https://m3.material.io/components/navigation-bar
+Navigation Bar (Flexible),Navigation,Android,"Shorter height + Horizontal items in medium windows + Active label secondary color",Material Design 3,https://m3.material.io/components/navigation-bar
+Modal Drawer,Navigation,Android,"Overlay + Scrim + List of destinations + Swipe to open/close + Header optional",Material Design 3,https://m3.material.io/components/navigation-drawer
+Standard Drawer,Navigation,Android,"Persistent + Side placement + Content pushes + Header + Destinations list",Material Design 3,https://m3.material.io/components/navigation-drawer
+Sheet (Bottom),Screen Pattern,Android,"Drag handle + Content + Peek height + Expanded state + Dismissible",Material Design 3,https://m3.material.io/components/bottom-sheets
+Sheet (Side),Screen Pattern,Android,"Right edge + Content + Dismissible + Modal or Persistent",Material Design 3,https://m3.material.io/components/side-sheets
+Full-screen Dialog,Screen Pattern,Android,"Full screen + Title + Close/Confirm actions + Content + Scrollable",Material Design 3,https://m3.material.io/components/dialogs
+Basic Dialog,Screen Pattern,Android,"Centered + Title + Content + 1-2 actions + Scrim + Rounded corners (28dp)",Material Design 3,https://m3.material.io/components/dialogs
+Snackbar (with action),Status,Android,"Message + Action button + Bottom + Auto-dismiss or swipe to dismiss",Material Design 3,https://m3.material.io/components/snackbar
+Snackbar (persistent),Status,Android,"Message only + Bottom + Remains until action taken + No dismiss",Material Design 3,https://m3.material.io/components/snackbar
+Linear Progress,Status,Android,"Horizontal track + Indicator + Determinate or Indeterminate + Optional label",Material Design 3,https://m3.material.io/components/progress-indicators
+Circular Progress,Status,Android,"Circular track + Indicator + Determinate or Indeterminate + Optional label",Material Design 3,https://m3.material.io/components/progress-indicators
+Onboarding,Screen Pattern,Android,"Welcome screens + Feature highlights + Get Started + Skip option + Illustrations",Material Design 3,https://m3.material.io/foundations/guidelines
+Empty State,Screen Pattern,Android,"Icon/illustration + Title + Description + Optional CTA + Centered",Material Design 3,https://m3.material.io/foundations/guidelines
+Error State,Screen Pattern,Android,"Error icon + Title + Description + Retry action + Optional details",Material Design 3,https://m3.material.io/foundations/guidelines
+Loading State,Screen Pattern,Android,"Skeleton screens + Shimmer effect + Progressive loading + Placeholder shapes",Material Design 3,https://m3.material.io/foundations/guidelines
+Pull to Refresh,Interaction,Android,"Swipe down gesture + Refresh indicator + Content reload + Haptic feedback",Material Design 3,https://m3.material.io/foundations/guidelines
+Swipe to Dismiss,Interaction,Android,"Swipe gesture + Reveal action + Undo option + List items",Material Design 3,https://m3.material.io/foundations/guidelines
+Drag and Drop,Interaction,Android,"Long press + Lift preview + Drop target + Reordering + Visual feedback",Material Design 3,https://m3.material.io/foundations/guidelines
+Expandable List Item,List,Android,"Header + Expand icon + Collapsed/Expanded content + Nested items + Animation",Material Design 3,https://m3.material.io/components/lists
+Swipeable Card,Content,Android,"Swipe gesture + Reveal actions + Dismiss or Archive + Visual feedback",Material Design 3,https://m3.material.io/components/cards
+Image List (Grid),Content,Android,"Grid layout + Images + Optional text overlay + Aspect ratio + Selection",Material Design 3,https://m3.material.io/components/image-lists
+Image List (Masonry),Content,Android,"Staggered grid + Variable heights + Images + Optional text + Selection",Material Design 3,https://m3.material.io/components/image-lists
+Data Table,Content,Android,"Headers + Rows + Columns + Sorting + Pagination + Selection + Actions",Material Design 3,https://m3.material.io/components/data-tables
+Stepper,Input,Android,"Steps + Active step + Completed step + Optional labels + Navigation (Next/Back)",Material Design 3,https://m3.material.io/components/steppers
+Bottom Navigation (Legacy),Navigation,Android,"3-5 items + Icons + Labels + Bottom placement + Active state (M2 name)",Material Design 3,https://m3.material.io/components/navigation-bar
+Navigation Rail (Expanded),Navigation,Android,"Text labels + Extended FAB + Default or Modal + Side placement",Material Design 3,https://m3.material.io/components/navigation-rail
+Navigation Rail (Collapsed),Navigation,Android,"Icons only + FAB + Compact + Side placement + Expand on hover/click",Material Design 3,https://m3.material.io/components/navigation-rail
+App Bar (Collapsing),Navigation,Android,"Scroll behavior + Collapse to toolbar + Image header + Parallax + Pin",Material Design 3,https://m3.material.io/components/app-bars
+App Bar (Contextual),Navigation,Android,"Selection mode + Action icons + Count + Close button + Replace regular app bar",Material Design 3,https://m3.material.io/components/app-bars
+Floating Action Button (Primary),CTA,Android,"Primary color + Main action + Circular + Icon + Shadow (legacy)",Material Design 3,https://m3.material.io/components/floating-action-button
+Floating Action Button (Secondary),CTA,Android,"Secondary color + Secondary action + Circular + Icon + Lower emphasis",Material Design 3,https://m3.material.io/components/floating-action-button
+Floating Action Button (Tertiary),CTA,Android,"Tertiary color + Tertiary action + Circular + Icon + Lowest emphasis",Material Design 3,https://m3.material.io/components/floating-action-button
+Extended FAB (Primary),CTA,Android,"Primary color + Icon + Label + Pill shape + Main action",Material Design 3,https://m3.material.io/components/extended-fab
+Extended FAB (Secondary),CTA,Android,"Secondary color + Icon + Label + Pill shape + Secondary action",Material Design 3,https://m3.material.io/components/extended-fab
+Button (Elevated),CTA,Android,"Shadow + Background color + Label + Optional icon + Default size",Material Design 3,https://m3.material.io/components/buttons
+Button (Filled),CTA,Android,"Container color + Label + Optional icon + Default size + High emphasis",Material Design 3,https://m3.material.io/components/buttons
+Button (Tonal),CTA,Android,"Secondary container color + Label + Optional icon + Medium emphasis",Material Design 3,https://m3.material.io/components/buttons
+Button (Outlined),CTA,Android,"Outline + Transparent background + Label + Optional icon + Low emphasis",Material Design 3,https://m3.material.io/components/buttons
+Button (Text),CTA,Android,"No container + Label + Optional icon + Lowest emphasis + Inline",Material Design 3,https://m3.material.io/components/buttons
+Text Field (Filled),Input,Android,"Filled background + Label + Placeholder + Input + Icons + Helper/Error text",Material Design 3,https://m3.material.io/components/text-fields
+Text Field (Outlined),Input,Android,"Outline border + Label + Placeholder + Input + Icons + Helper/Error text",Material Design 3,https://m3.material.io/components/text-fields
+Text Field (Plain),Input,Android,"No background/border + Label + Placeholder + Input + Icons + Minimal",Material Design 3,https://m3.material.io/components/text-fields
+Autocomplete,Input,Android,"Text field + Dropdown suggestions + Selection + Filter + Optional icons",Material Design 3,https://m3.material.io/components/text-fields
+Dropdown Menu,Input,Android,"Text field + Dropdown arrow + Options list + Selection + Optional search",Material Design 3,https://m3.material.io/components/menus
+Exposed Dropdown Menu,Input,Android,"Editable text field + Dropdown + Options + Selection + Filter",Material Design 3,https://m3.material.io/components/menus
+Chip Group,Content/Input,Android,"Multiple chips + Horizontal scroll + Selection + Filter + Input",Material Design 3,https://m3.material.io/components/chips
+Assist Chip,Content/Input,Android,"Icon + Label + Smart action + Cross-app functionality + Tap to execute",Material Design 3,https://m3.material.io/components/chips
+Filter Chip,Content/Input,Android,"Tag + Checkmark + Filter content + Toggle selection + Multiple select",Material Design 3,https://m3.material.io/components/chips
+Input Chip,Content/Input,Android,"User-entered info + Close icon + Discrete info + Contact/tag + Removable",Material Design 3,https://m3.material.io/components/chips
+Suggestion Chip,Content/Input,Android,"Dynamic suggestion + Label + Tap to apply + Search filter + Generated",Material Design 3,https://m3.material.io/components/chips
+Rich Tooltip,Status,Android,"Icon + Title + Description + Action + Arrow + Persistent + Dismissible",Material Design 3,https://m3.material.io/components/tooltips
+Plain Tooltip,Status,Android,"Text only + Brief + Arrow + Auto-dismiss + Hover/Focus trigger",Material Design 3,https://m3.material.io/components/tooltips
+Banner (Single line),Status,Android,"Icon + Text + 1 action + Top + Compact + Dismissible",Material Design 3,https://m3.material.io/components/banners
+Banner (Multi-line),Status,Android,"Icon + Text + 2 actions + Top + Expanded + Dismissible",Material Design 3,https://m3.material.io/components/banners
+Settings Screen,Screen Pattern,Android,"List items + Toggles + Dividers + Categories + Navigation to sub-screens",Material Design 3,https://m3.material.io/foundations/guidelines
+Search Screen,Screen Pattern,Android,"Search bar + Recent searches + Suggestions + Results list + Filters",Material Design 3,https://m3.material.io/components/search
+Profile Screen,Screen Pattern,Android,"Avatar + Name + Info + Actions + Stats + Social links + Edit option",Material Design 3,https://m3.material.io/foundations/guidelines
+Home Screen,Screen Pattern,Android,"Greeting + Quick actions + Content cards + FAB + Bottom navigation",Material Design 3,https://m3.material.io/foundations/guidelines
+Detail Screen,Screen Pattern,Android,"Hero image + Title + Description + Actions + Related content + Back button",Material Design 3,https://m3.material.io/foundations/guidelines
+Form Screen,Screen Pattern,Android,"Multiple input fields + Validation + Submit button + Progress indicator + Sections",Material Design 3,https://m3.material.io/foundations/guidelines
+Confirmation Screen,Screen Pattern,Android,"Success/Error icon + Message + Details + Primary action + Secondary action",Material Design 3,https://m3.material.io/foundations/guidelines
+Permission Request,Screen Pattern,Android,"Icon + Title + Description + Allow/Deny + Optional 'Don't ask again'",Material Design 3,https://m3.material.io/foundations/guidelines
+Rate App Dialog,Screen Pattern,Android,"Star rating + Comment field + Submit + Later + Never",Material Design 3,https://m3.material.io/foundations/guidelines
+Share Sheet,Interaction,Android,"App icons + Recent contacts + Copy link + Actions + Preview + Scrollable",Material Design 3,https://m3.material.io/foundations/guidelines
+Notification,Status,Android,"Icon + Title + Message + Actions + Timestamp + Expandable + Dismiss",Material Design 3,https://m3.material.io/foundations/guidelines
+Quick Settings Tile,Quick Actions,Android,"Icon + Label + Toggle state + System panel + Customizable",Material Design 3,https://m3.material.io/foundations/guidelines
+Widget (Home Screen),Status,Android,"Small/Medium/Large + Glanceable info + Tap to open + Update + Resizable",Material Design 3,https://m3.material.io/foundations/guidelines
+Adaptive Icon,Branding,Android,"Foreground + Background + Masked shape + Dynamic color + Animated",Material Design 3,https://m3.material.io/foundations/guidelines
+Splash Screen,Branding,Android,"App icon + Background + Brand color + Brief display + Transition to app",Material Design 3,https://m3.material.io/foundations/guidelines
+Dynamic Color,Branding,Android,"Wallpaper-derived palette + Primary/Secondary/Tertiary + Accessible + Applied to UI",Material Design 3,https://m3.material.io/foundations/guidelines
+Dark Theme,Branding,Android,"Dark background + Light text + Reduced brightness + OLED black + Toggle",Material Design 3,https://m3.material.io/foundations/guidelines
+Light Theme,Branding,Android,"Light background + Dark text + Standard brightness + Toggle + Default",Material Design 3,https://m3.material.io/foundations/guidelines
+High Contrast Theme,Accessibility,Android,"Maximum contrast + Bold text + Large text + Color inversion + System setting",Material Design 3,https://m3.material.io/foundations/guidelines
+TalkBack,Accessibility,Android,"Screen reader + Gestures + Focus + Audio descriptions + Navigation",Material Design 3,https://m3.material.io/foundations/guidelines
+Switch Access,Accessibility,Android,"Scanning + Selection + Action + Switch control + Customizable",Material Design 3,https://m3.material.io/foundations/guidelines
+Magnification,Accessibility,Android,"Zoom + Pan + Triple-tap + Window or full-screen + System setting",Material Design 3,https://m3.material.io/foundations/guidelines
+Large Text,Accessibility,Android,"Scalable fonts + Layout adaptation + Content preservation + System setting",Material Design 3,https://m3.material.io/foundations/guidelines
+Reduce Motion,Accessibility,Android,"Minimized animations + Crossfades + Static alternatives + System setting",Material Design 3,https://m3.material.io/foundations/guidelines
+Haptic Feedback,Feedback,Android,"Touch response + Vibration + Impact + Notification + Selection + Customizable",Material Design 3,https://m3.material.io/foundations/guidelines
+Sound Feedback,Feedback,Android,"Touch sounds + Audio cues + Volume control + Customizable + Accessibility",Material Design 3,https://m3.material.io/foundations/guidelines
+Visual Feedback,Feedback,Android,"Ripple effect + State change + Animation + Color change + Focus indicator",Material Design 3,https://m3.material.io/foundations/guidelines
+Gesture Navigation,Navigation,Android,"Swipe from edges + Back gesture + Home gesture + Overview + Pill indicator",Material Design 3,https://m3.material.io/foundations/guidelines
+Three-button Navigation,Navigation,Android,"Back + Home + Overview buttons + Bottom placement + Legacy option",Material Design 3,https://m3.material.io/foundations/guidelines
+Edge-to-Edge Display,Layout,Android,"Content extends to edges + System bars transparent + Immersive + Insets handling",Material Design 3,https://m3.material.io/foundations/guidelines
+Window Insets,Layout,Android,"System bars + Keyboard + Gestures + Safe areas + Layout adjustment",Material Design 3,https://m3.material.io/foundations/guidelines
+Foldable Adaptation,Layout,Android,"Dual-screen + Fold + Posture + Continuity + App continuity + Multi-window",Material Design 3,https://m3.material.io/foundations/guidelines
+Large Screen Adaptation,Layout,Android,"Tablet + Desktop + Two-pane + List-detail + Navigation rail + Responsive",Material Design 3,https://m3.material.io/foundations/guidelines
+Density Independence,Layout,Android,"dp units + Scale-independent pixels + Resource qualifiers + Multiple densities",Material Design 3,https://m3.material.io/foundations/guidelines
+Responsive Layout,Layout,Android,"Breakpoints + Window size classes + Compact/Medium/Expanded + Adaptive UI",Material Design 3,https://m3.material.io/foundations/guidelines
+Grid System,Layout,Android,"Columns + Gutters + Margins + 12-column grid + Responsive + Alignment",Material Design 3,https://m3.material.io/foundations/guidelines
+Elevation,Layout,Android,"Shadows + Z-axis + Depth + Hierarchy + Overlap + Material metaphor",Material Design 3,https://m3.material.io/foundations/guidelines
+Motion,Interaction,Android,"Transitions + Animations + Duration + Easing + Physics-based + Expressive",Material Design 3,https://m3.material.io/foundations/guidelines
+Shared Element Transition,Interaction,Android,"Element morphs + Cross-fade + Container transform + Fade through + Fade",Material Design 3,https://m3.material.io/foundations/guidelines
+Container Transform,Interaction,Android,"View expands + Morphs + Shared element + Hero animation + Transition",Material Design 3,https://m3.material.io/foundations/guidelines
+Fade Through,Interaction,Android,"Cross-fade + Scale + Content replacement + Subtle + Navigation",Material Design 3,https://m3.material.io/foundations/guidelines
+Fade,Interaction,Android,"Opacity change + Simple + Enter/Exit + Subtle + Default transition",Material Design 3,https://m3.material.io/foundations/guidelines
+Scale,Interaction,Android,"Size change + Grow/Shrink + Emphasis + Enter/Exit + Animation",Material Design 3,https://m3.material.io/foundations/guidelines
+Slide,Interaction,Android,"Directional movement + Enter/Exit + Horizontal/Vertical + Navigation + Gesture",Material Design 3,https://m3.material.io/foundations/guidelines
+Choreography,Interaction,Android,"Staggered animations + Sequential + Grouped elements + Direction + Delay",Material Design 3,https://m3.material.io/foundations/guidelines
+Ripple,Interaction,Android,"Touch feedback + Circular expansion + Color + Opacity + Boundaries",Material Design 3,https://m3.material.io/foundations/guidelines
+State Layer,Interaction,Android,"Hover + Pressed + Dragged + Focused + Opacity + Color + Overlay",Material Design 3,https://m3.material.io/foundations/guidelines
+Focus Indicator,Accessibility,Android,"Outline + Color + Thickness + Visibility + Keyboard navigation + High contrast",Material Design 3,https://m3.material.io/foundations/guidelines
+Touch Target,Accessibility,Android,"Minimum 48dp + Spacing + Visibility + Finger-friendly + Comfortable",Material Design 3,https://m3.material.io/foundations/guidelines
+Color Contrast,Accessibility,Android,"Minimum ratios + WCAG + Text/Background + Icons + Dynamic color + Testing",Material Design 3,https://m3.material.io/foundations/guidelines
+Color Role,Branding,Android,"Primary + Secondary + Tertiary + Error + Neutral + Surface + Background + On-colors",Material Design 3,https://m3.material.io/foundations/guidelines
+Typography Scale,Branding,Android,"Display + Headline + Title + Body + Label + Sizes + Weights + Line heights",Material Design 3,https://m3.material.io/foundations/guidelines
+Shape Scale,Branding,Android,"Small + Medium + Large + Full + Component-specific + Rounded corners + Cut corners",Material Design 3,https://m3.material.io/foundations/guidelines
+Iconography,Branding,Android,"Filled + Outlined + Rounded + Sharp + Two-tone + Sizes + Color + Accessibility",Material Design 3,https://m3.material.io/foundations/guidelines
+Spacing Scale,Branding,Android,"4dp base + 8dp + 16dp + 24dp + 32dp + 48dp + 64dp + Consistent rhythm",Material Design 3,https://m3.material.io/foundations/guidelines
+Corner Radius,Branding,Android,"0dp + 4dp + 8dp + 12dp + 16dp + 24dp + 28dp + Full + Component-specific",Material Design 3,https://m3.material.io/foundations/guidelines
+Shadow,Branding,Android,"Ambient + Spot + Elevation levels + Color + Opacity + Blur + Material metaphor",Material Design 3,https://m3.material.io/foundations/guidelines
+Surface,Branding,Android,"Background color + Elevation + Shadow + Overlay + Tint + Material layers",Material Design 3,https://m3.material.io/foundations/guidelines
+Outline,Branding,Android,"Border color + Width + Shape + Container + Emphasis + Accessibility",Material Design 3,https://m3.material.io/foundations/guidelines
+Scrim,Branding,Android,"Overlay + Opacity + Dark + Modal + Focus + Dismissible + Behind dialogs/sheets",Material Design 3,https://m3.material.io/foundations/guidelines

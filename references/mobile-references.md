@@ -6,9 +6,10 @@ For extractable, open mobile patterns ingested into `data/` and queryable throug
 
 | CSV | Patterns | Source |
 |---|---|---|
-| [`data/apple-hig-patterns.csv`](../data/apple-hig-patterns.csv) | 50 iOS / iPadOS / macOS component anatomies | Apple Human Interface Guidelines |
-| [`data/material-design-3-patterns.csv`](../data/material-design-3-patterns.csv) | 49 Android / cross-platform component anatomies | Material Design 3 |
+| [`data/apple-hig-patterns.csv`](../data/apple-hig-patterns.csv) | 77 iOS / iPadOS / macOS / watchOS / tvOS / visionOS / CarPlay component anatomies | Apple Human Interface Guidelines |
+| [`data/material-design-3-patterns.csv`](../data/material-design-3-patterns.csv) | 155 Android / cross-platform component anatomies, screen patterns, layout/motion/branding tokens | Material Design 3 |
 | [`data/pttrns-patterns.csv`](../data/pttrns-patterns.csv) | 50 mobile UX pattern categories with anatomy | Pttrns |
+| [`data/page-flows-patterns.csv`](../data/page-flows-patterns.csv) | 97 end-to-end mobile user flows (onboarding, login, checkout, booking, cancellation, verification…) | Page Flows |
 
 Query examples:
 
@@ -17,11 +18,13 @@ Query examples:
 python3 scripts/search.py "tab bar"
 python3 scripts/search.py "floating action button"
 python3 scripts/search.py "onboarding flow"
+python3 scripts/search.py "cancel subscription"
 
 # Force a specific source
 python3 scripts/search.py "navigation" --domain apple-hig
 python3 scripts/search.py "card" --domain material-design-3
 python3 scripts/search.py "empty state" --domain pttrns
+python3 scripts/search.py "verify email" --domain page-flows
 ```
 
 ---

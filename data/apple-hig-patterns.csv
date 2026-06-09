@@ -1,51 +1,79 @@
 pattern_name,category,platform,anatomy,source,url
-Tab Bar,Navigation,iOS/iPadOS,"Icon, Label, Badge, Background",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/navigation-and-search/tab-bars
-Sidebar,Navigation,iPadOS/macOS,"List items, Grouping, Search field",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/navigation-and-search/sidebars
-Navigation Bar,Navigation,iOS/iPadOS,"Title, Leading action, Trailing action",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/navigation-and-search/nav-bars
-Search Field,Navigation,All,"Magnifying glass, Placeholder text, Clear button",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/navigation-and-search/search-fields
-Push Button,Actions,macOS,"Label, Bezel, Symbol/Icon",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/menus-and-actions/buttons
-Standard Button,Actions,iOS/iPadOS,"Style (Filled/Gray/Tinted), Content, Role",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/menus-and-actions/buttons
-Destructive Button,Actions,All,"Red label/background, Semantic role",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/menus-and-actions/buttons
-List Row,Layout,iOS/iPadOS,"Leading image, Label, Disclosure indicator",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/layout-and-organization/lists-and-tables
-Grouped List,Layout,iOS/iPadOS,"Headers, Footers, Spacing",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/layout-and-organization/lists-and-tables
-Outline View,Layout,macOS,"Disclosure triangle, Hierarchical rows",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/layout-and-organization/outline-views
-Context Menu,Actions,All,"Preview, Menu items, Icons",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/menus-and-actions/context-menus
-Segmented Control,Selection,All,"Segments, Labels, Selection indicator",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/segmented-controls
-Toggle,Selection,All,"Switch, State label",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/toggles
-Slider,Selection,All,"Track, Thumb, Icons",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/sliders
-Progress Indicator,Status,All,"Track, Fill, Label",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/status/progress-indicators
-Activity Indicator,Status,All,"Spinning wheel",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/status/activity-indicators
-Alert,Presentation,All,"Title, Message, Action buttons",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/presentation/alerts
-Sheet,Presentation,iOS/iPadOS,"Handle, Content area, Dismissal action",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/presentation/sheets
-Popover,Presentation,iPadOS/macOS,"Arrow, Content area",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/presentation/popovers
-Action Sheet,Presentation,iOS,"Title, Message, Action buttons",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/presentation/action-sheets
-Text Field,Selection/Input,All,"Label, Placeholder, Input area",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/text-fields
-Date Picker,Selection/Input,All,"Calendar view, Time selector",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/date-pickers
-Checkmark,Selection/Input,All,"List item, Selection state",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/selection-and-input
-Stepper,Selection/Input,All,"Plus button, Minus button",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/steppers
-Radio Button,Selection/Input,macOS,"Circular button, Selection state",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/selection-and-input
-Badge,Status,All,"Red oval, Number/Icon",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/status/status
-Menu,Actions,All,"Menu items, Separators",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/menus-and-actions/menus
-Pull-down Button,Actions,All,"Label, Chevron, Menu",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/menus-and-actions/pull-down-buttons
-Pop-up Button,Actions,All,"Label, Double chevron, Selection menu",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/menus-and-actions/pop-up-buttons
-Toolbar,Navigation,All,"Icons, Labels, Flexible space",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/menus-and-actions/toolbars
-Split View,Layout,iPadOS/macOS,"Primary pane, Secondary pane, Divider",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/layout-and-organization/split-views
-Collection,Layout,All,"Grid, Items, Sections",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/layout-and-organization/collections
-Box,Layout,macOS,"Title, Border, Content area",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/layout-and-organization/boxes
-Label,Layout,All,"Text content, Icon",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/layout-and-organization/labels
-Lockup,Layout,All,"Image, Title, Subtitle",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/layout-and-organization/lockups
-Home Screen Quick Actions,System,iOS,"Menu items, Icons",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/home-screen-quick-actions
-Widgets,System,All,"Sizes, Content, Deep links",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets
-Live Activities,System,iOS,"Dynamic Island, Lock Screen, Updates",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/live-activities
-Notifications,Status,All,"Title, Subtitle, Body, Image",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/status/notifications
-Control Center,System,All,"Controls, Icons, Status",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/control-center
-App Shortcuts,System,All,"Siri, Search, Shortcuts app",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/app-shortcuts
-Share Sheet,System,All,"Activities, Recipients, Copy link",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/share-sheet
-Spotlight,System,All,"Search bar, Results, Suggestions",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/spotlight
-Dock,System,macOS/iPadOS,"App icons, Folders, Trash",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/dock
-Menu Bar,System,macOS,"Apple menu, App menus, Status items",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/menu-bar
-Control,Selection,All,"State (Normal/Highlighted/Selected), Interaction",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/selection-and-input
-Pickers,Selection,All,"Options, Wheel/List",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/pickers
-Color Well,Selection,All,"Color preview, Color picker",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/color-wells
-Rating Indicator,Selection,All,"Stars, Value",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/rating-indicators
-Search Bar,Navigation,iOS,"Search field, Cancel button, Scope bar",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/components/navigation-and-search/search-fields
+Toolbar,Navigation,iOS,"Title + Navigation controls (Back/Forward) + Actions (buttons/menus)",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/toolbars
+Tab Bar,Navigation,iOS,"3-5 tabs with icons + labels, floating above content at bottom",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/tab-bars
+Navigation Bar,Navigation,iOS,"Back button + Title + Optional actions (trailing)",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/navigation-bars
+Sidebar,Navigation,iOS/iPadOS/macOS,"Vertical list of destinations with icons + labels, collapsible",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/sidebars
+Search Field,Navigation/Input,iOS,"Search icon + Placeholder text + Clear button + Optional scope bar",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/search-fields
+Button,CTA,iOS,"Label text OR icon + Background (filled/ghost) + Corner radius",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/buttons
+Large Title,Screen Pattern,iOS,"Large bold title + Optional subtitle + Back button",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/navigation-bars
+List Item,List,iOS,"Leading icon/image + Primary text + Secondary text + Trailing accessory (chevron/switch)",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/lists
+Grouped List,List,iOS,"Section header + List items + Section footer, with rounded corners",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/lists
+Modal View,Screen Pattern,iOS,"Sheet presentation + Drag handle + Close/Done button + Content",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/modality
+Alert Dialog,Screen Pattern,iOS,"Title + Message + 1-2 action buttons (vertical stack)",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/alerts
+Onboarding,Screen Pattern,iOS,"Welcome screens + Feature highlights + Get Started CTA + Optional skip",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/onboarding
+Settings Screen,Screen Pattern,iOS,"Grouped list items + Toggles + Navigation to sub-screens",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/settings
+Empty State,Screen Pattern,iOS,"Icon/illustration + Title + Description + Optional CTA button",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/empty-states
+Loading State,Screen Pattern,iOS,"Activity indicator + Optional progress text + Skeleton screens",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/loading
+Pull to Refresh,Interaction,iOS,"Drag down gesture + Activity indicator + Content reload",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/refresh-content-controls
+Context Menu,Interaction,iOS,"Long press trigger + Preview + Action list (icons + labels)",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/context-menus
+Segmented Control,Navigation/Input,iOS,"2-5 segments + Selected indicator + Equal width",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/segmented-controls
+Stepper,Input,iOS,"Decrement button + Value display + Increment button",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/steppers
+Slider,Input,iOS,"Track + Thumb + Optional value labels + Min/Max indicators",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/sliders
+Toggle Switch,Input,iOS,"Track + Thumb + On/Off states + Optional labels",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/toggles
+Picker,Input,iOS,"Wheel or list selection + Selected value highlight + Done button",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/pickers
+Date Picker,Input,iOS,"Calendar grid + Month/Year selector + Selected date highlight",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/date-pickers
+Time Picker,Input,iOS,"Clock face or wheel + Hour/Minute selectors + AM/PM toggle",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/time-pickers
+Text Field,Input,iOS,"Placeholder + Input text + Clear button + Optional icon/label",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/text-fields
+Secure Text Field,Input,iOS,"Text field + Masked characters + Show/Hide toggle",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/text-fields
+Progress Indicator,Status,iOS,"Circular or linear + Percentage or indeterminate + Optional label",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/progress-indicators
+Badge,Status,iOS,"Red oval + White text/number + Positioned on icon/tab",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/notifications
+Toast/Snackbar,Status,iOS,"Brief message + Optional action button + Auto-dismiss",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/feedback
+Navigation Split View,Navigation,iPadOS,"Master list + Detail pane + Optional collapsible sidebar",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/split-views
+Tab Bar (iPad),Navigation,iPadOS,"Horizontal tabs at top + Icons + Labels + Optional sidebar toggle",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/tab-bars
+Popover,Presentation,iPadOS,"Anchor arrow + Content card + Close button + Dimmed background",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/popovers
+Sheet (iPad),Presentation,iPadOS,"Modal card + Drag handle + Close button + Adaptive sizing",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/sheets
+Menu Bar,Navigation,macOS,"Horizontal menu + Dropdown items + Keyboard shortcuts + Status icons",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/menus
+Touch Bar,Input,macOS,"Dynamic function keys + Contextual controls + Esc key",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/touch-bar
+Watch Complication,Status,watchOS,"Small data display + Circular/rectangular/inline + Customizable",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/complications
+Digital Crown,Input,watchOS,"Rotating crown + Haptic feedback + Zoom/scroll control",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/digital-crown
+Force Touch,Interaction,watchOS,"Firm press + Haptic feedback + Contextual menu",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/force-touch
+TV Focus,Navigation,tvOS,"Focus ring + Parallax effect + Directional navigation + Select action",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/focus-and-selection
+Top Shelf,Status,tvOS,"Content preview row + App icon + Featured content highlights",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/top-shelf
+VisionOS Window,Presentation,visionOS,"Glass material + Rounded corners + Depth + Eye/hand input",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/windows
+Spatial Audio,Audio,visionOS,"3D sound positioning + Head tracking + Immersive environments",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/spatial-audio
+Share Sheet,Interaction,iOS,"App icon grid + Recent contacts + Action list + Preview",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/sharing
+Drag and Drop,Interaction,iOS/iPadOS,"Long press + Lift preview + Drop target highlight + Reordering",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/drag-and-drop
+Multitasking (iPad),Interaction,iPadOS,"Split View + Slide Over + Multiple windows + App switcher",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/multitasking
+Picture in Picture,Media,iOS/iPadOS,"Floating video window + Resize controls + Play/Pause + Close",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/picture-in-picture
+Live Activities,Status,iOS,"Lock screen widget + Real-time updates + Deep link + Dismiss",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/live-activities
+Widgets,Status,iOS/iPadOS/macOS,"Small/medium/large sizes + Glanceable info + Tap to open app",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/widgets
+Shortcuts,Automation,iOS/iPadOS/macOS,"Voice trigger + Action sequence + Parameter input + Confirmation",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/siri
+Siri Integration,Voice,iOS/iPadOS/macOS/watchOS,"Voice command + Intent handling + Response + Suggestions",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/siri
+Accessibility (VoiceOver),Accessibility,iOS/iPadOS/macOS/watchOS/tvOS,"Screen reader + Gestures + Rotor + Audio descriptions",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/accessibility
+Dynamic Type,Accessibility,iOS/iPadOS/macOS/watchOS/tvOS,"Scalable fonts + Layout adaptation + Content preservation",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/typography
+Reduce Motion,Accessibility,iOS/iPadOS/macOS/watchOS/tvOS,"Minimized animations + Crossfades + Static alternatives",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/accessibility
+Color Contrast,Accessibility,iOS/iPadOS/macOS/watchOS/tvOS,"Minimum ratios + Dark mode + High contrast mode + Color independence",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/color
+Haptics,Feedback,iOS/watchOS,"Tactile feedback + Impact + Notification + Selection patterns",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/playing-haptics
+App Clips,Discovery,iOS,"Lightweight app + Card invocation + Quick task + Full app promotion",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/app-clips
+App Icon,Branding,iOS/iPadOS/macOS/watchOS/tvOS,"Platform-specific shape + Safe area + Adaptive backgrounds + Dark mode variant",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/app-icons
+Launch Screen,Branding,iOS/iPadOS,"Logo centered + Minimal content + Brief display + Transition to app",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/launching
+Status Bar,Status,iOS,"Time + Battery + Signal + Bluetooth + Location + Custom icons",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/status-bars
+Home Screen Widgets,Status,iOS/iPadOS,"Small/medium/large + Stackable + Smart rotate + Deep links",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/widgets
+Notification Banner,Status,iOS/iPadOS/macOS/watchOS,"Icon + Title + Message + Actions + Swipe to dismiss",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/notifications
+Notification Center,Status,iOS/iPadOS/macOS/watchOS,"Grouped by app + Clear all + Expandable + Actions",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/notifications
+Control Center,Quick Actions,iOS/iPadOS,"Toggles + Sliders + Shortcuts + 3D Touch/Long press for options",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/control-center
+Today View,Status,iOS/iPadOS,"Widgets + App shortcuts + Recent items + Customizable",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/today-view
+Spotlight Search,Search,iOS/iPadOS/macOS,"Search bar + Suggestions + Recent items + Siri suggestions + Deep links",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/searching
+Safari View Controller,Web,iOS/iPadOS,"Address bar + Navigation + Reader mode + Share + Done button",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/safari-view-controller
+HealthKit Permissions,Privacy,iOS/iPadOS/watchOS,"Permission prompt + Data types + Explanation + Allow/Deny",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/healthkit
+Camera Interface,Media,iOS,"Preview + Shutter + Flash + Switch camera + Photo library + Modes",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/camera
+Maps Annotations,Maps,iOS/iPadOS/macOS,"Pin/marker + Callout + Clustering + Custom images + Selection",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/maps
+ARKit Overlay,AR,iOS/iPadOS,"Camera feed + 3D objects + Plane detection + Anchors + Coaching overlay",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/augmented-reality
+CarPlay Interface,Auto,iOS,"Simplified UI + Large touch targets + Voice control + Safety restrictions",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/carplay
+Apple Watch Notification,Status,watchOS,"Short look + Long look + Action buttons + Dismiss + Scroll",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/notifications
+Apple Pay Sheet,Payment,iOS/iPadOS/watchOS,"Merchant info + Amount + Card + Confirm + Cancel + Authentication",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/apple-pay
+Sign in with Apple,Auth,iOS/iPadOS/macOS/tvOS/watchOS,"Apple ID button + Face/Touch ID + Email options + Cancel",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/sign-in-with-apple
+Game Center,Games,iOS/iPadOS/macOS/tvOS/watchOS,"Achievements + Leaderboards + Multiplayer + Invitations + Profile",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/game-center
+In-App Purchase,Monetization,iOS/iPadOS/macOS/tvOS/watchOS,"Product display + Price + Description + Buy button + Confirmation + Restore",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/in-app-purchase
+Subscription Management,Monetization,iOS/iPadOS/macOS/tvOS/watchOS,"Subscription tiers + Features + Pricing + Free trial + Cancel/Upgrade",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/subscriptions
+Rating and Review,Feedback,iOS/iPadOS/macOS/tvOS/watchOS,"Star rating + Written review + Submit + Skip + Reminder scheduling",Apple HIG,https://developer.apple.com/design/human-interface-guidelines/ratings-and-reviews

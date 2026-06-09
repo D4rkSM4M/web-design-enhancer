@@ -1,0 +1,99 @@
+pattern_name,category,platform,anatomy,source,url
+Onboarding,Screen Pattern,Mobile,"Welcome screens + Feature highlights + Get Started CTA + Optional skip + Illustrations",Page Flows,https://pageflows.com/post/ios/onboarding/
+General Browsing,Screen Pattern,Mobile,"Home feed + Content discovery + Navigation + Search + Categories + Recommendations",Page Flows,https://pageflows.com/post/ios/general-browsing/
+Sorting and Filtering,Interaction,Mobile,"Filter options + Sort criteria + Apply + Reset + Results update + Categories + Tags + Range sliders",Page Flows,https://pageflows.com/post/ios/sorting-and-filtering/
+Deleting Your Account,Flow,Mobile,"Warning + Reason selection + Data retention info + Confirmation + Recovery options + Success",Page Flows,https://pageflows.com/post/ios/deleting-your-account/
+Deleting Conversations,Flow,Mobile,"Select conversations + Confirmation + Warning + Undo option + Progress + Success + Empty state",Page Flows,https://pageflows.com/post/ios/deleting-conversations/
+Adding to Favorites,Flow,Mobile,"Item + Save action + Collection selection + Confirmation + Access later + Organize + Unsave",Page Flows,https://pageflows.com/post/ios/adding-to-favorites/
+Logging In,Flow,Mobile,"Email/phone + Password + Social login + Biometric + 2FA + Forgot password + Success + Remember me",Page Flows,https://pageflows.com/post/ios/logging-in/
+Adding Payment Details,Flow,Mobile,"Card input + Billing address + Validation + Security + Save for later + Confirmation + Error handling",Page Flows,https://pageflows.com/post/ios/adding-payment-details/
+Creating a Board,Flow,Mobile,"Title + Description + Privacy settings + Invite members + Templates + Customization + Publish",Page Flows,https://pageflows.com/post/ios/creating-a-board/
+Discovering Content,Flow,Mobile,"Browse + Categories + Search + Recommendations + Filters + Preview + Save + Share",Page Flows,https://pageflows.com/post/ios/discovering-content/
+Shopping List,Screen Pattern,Mobile,"Item list + Quantities + Prices + Checkboxes + Categories + Total + Checkout CTA + Share",Page Flows,https://pageflows.com/post/ios/shopping-list/
+Accepting an Invite,Flow,Mobile,"Notification + Preview + Accept/Decline + Message + Calendar integration + Confirmation + Success",Page Flows,https://pageflows.com/post/ios/accepting-an-invite/
+Adding Connections,Flow,Mobile,"Search + Profile preview + Connect request + Message + Confirmation + Notifications + Manage",Page Flows,https://pageflows.com/post/ios/adding-connections/
+Unfollowing a User,Flow,Mobile,"Profile + Unfollow button + Confirmation + Settings + Mute options + Block + Report",Page Flows,https://pageflows.com/post/ios/unfollowing-a-user/
+Upgrading Your Account,Flow,Mobile,"Current plan + Pricing tiers + Feature comparison + Payment + Confirmation + Benefits + Invoice",Page Flows,https://pageflows.com/post/ios/upgrading-your-account/
+Verifying Email Address,Flow,Mobile,"Email input + Verification code + Resend + Timer + Alternative methods + Success + Error handling",Page Flows,https://pageflows.com/post/ios/verifying-email-address/
+Upgrading Your Subscription,Flow,Mobile,"Current plan + Pricing tiers + Feature comparison + Payment + Confirmation + Benefits + Invoice + History",Page Flows,https://pageflows.com/post/ios/upgrading-your-subscription/
+Watching Videos,Screen Pattern,Mobile,"Video player + Controls + Progress + Fullscreen + Related + Comments + Share + Playlist + Quality",Page Flows,https://pageflows.com/post/ios/watching-videos/
+Settings,Screen Pattern,Mobile,"Grouped list items + Toggles + Navigation to sub-screens + Categories + Dividers + Search + Profile",Page Flows,https://pageflows.com/post/ios/settings/
+Changing Password,Flow,Mobile,"Current password + New password + Confirm + Strength indicator + Save + Success + Security + Logout all devices",Page Flows,https://pageflows.com/post/ios/changing-password/
+Booking a Ride,Flow,Mobile,"Pickup + Destination + Vehicle type + Price estimate + Confirm + Driver info + Tracking + Payment + Rating",Page Flows,https://pageflows.com/post/ios/booking-a-ride/
+Updating Your Profile,Flow,Mobile,"Avatar + Name + Bio + Links + Privacy settings + Save + Preview + Validation + Social connections",Page Flows,https://pageflows.com/post/ios/updating-your-profile/
+Confirming Email Address,Flow,Mobile,"Email input + Verification code + Resend + Timer + Alternative methods + Success + Error handling + Skip",Page Flows,https://pageflows.com/post/ios/confirming-email-address/
+Adding Postal Address,Flow,Mobile,"Address fields + Validation + Map + Save + Default + Multiple addresses + Delete + Edit",Page Flows,https://pageflows.com/post/ios/adding-postal-address/
+Adding a Delivery Address,Flow,Mobile,"Address fields + Validation + Map + Save + Default + Multiple addresses + Delete + Edit + Instructions",Page Flows,https://pageflows.com/post/ios/adding-a-delivery-address/
+Adding an Account,Flow,Mobile,"Account type + Credentials + Verification + Permissions + Sync + Confirmation + Manage + Switch",Page Flows,https://pageflows.com/post/ios/adding-an-account/
+Adding Comments,Flow,Mobile,"Text input + Attachments + Preview + Post + Edit + Delete + Reply + Reactions + Notifications",Page Flows,https://pageflows.com/post/ios/adding-comments/
+Completing a Plan,Flow,Mobile,"Plan overview + Tasks + Progress + Checklist + Rewards + Completion + Share + Next steps + History",Page Flows,https://pageflows.com/post/ios/completing-a-plan/
+Booking Free Classes,Flow,Mobile,"Browse + Class details + Schedule + Reserve + Confirmation + Calendar + Reminder + Cancel + Waitlist",Page Flows,https://pageflows.com/post/ios/booking-free-classes/
+Adding Travelers Details,Flow,Mobile,"Passenger info + Documents + Preferences + Special requests + Save + Edit + Delete + Confirmation",Page Flows,https://pageflows.com/post/ios/adding-travelers-details/
+Joining a Workspace,Flow,Mobile,"Invite link + Workspace preview + Join + Permissions + Onboarding + Team members + Channels + Settings",Page Flows,https://pageflows.com/post/ios/joining-a-workspace/
+Adding a Member,Flow,Mobile,"Search + Invite + Role selection + Permissions + Confirmation + Notifications + Manage + Remove",Page Flows,https://pageflows.com/post/ios/adding-a-member/
+Adding Billing Address,Flow,Mobile,"Address fields + Validation + Map + Save + Default + Multiple addresses + Delete + Edit + Tax info",Page Flows,https://pageflows.com/post/ios/adding-billing-address/
+Cancelling Subscription,Flow,Mobile,"Current plan + Reason + Retention offer + Confirm + Effective date + Export data + Success + Feedback",Page Flows,https://pageflows.com/post/ios/cancelling-subscription/
+Adding Mentions,Flow,Mobile,"@ symbol + User search + Select + Notify + Highlight + Edit + Remove + Permissions + Notifications",Page Flows,https://pageflows.com/post/ios/adding-mentions/
+Applying as a Seller,Flow,Mobile,"Application form + Documents + Verification + Terms + Approval process + Dashboard + Listings + Payments",Page Flows,https://pageflows.com/post/ios/applying-as-a-seller/
+Commenting,Flow,Mobile,"Text input + Attachments + Preview + Post + Edit + Delete + Reply + Reactions + Notifications + Thread",Page Flows,https://pageflows.com/post/ios/commenting/
+Sharing,Flow,Mobile,"Share sheet + Apps + Copy link + Message + Email + Social + Permissions + Preview + Analytics",Page Flows,https://pageflows.com/post/ios/sharing/
+Adding Goals,Flow,Mobile,"Goal type + Target + Timeline + Milestones + Progress + Notifications + Edit + Complete + Archive",Page Flows,https://pageflows.com/post/ios/adding-goals/
+Using Plugins,Flow,Mobile,"Plugin store + Browse + Install + Configure + Permissions + Enable + Disable + Update + Remove",Page Flows,https://pageflows.com/post/ios/using-plugins/
+Booking a Room,Flow,Mobile,"Search + Filters + Room details + Photos + Amenities + Price + Dates + Reserve + Payment + Confirmation",Page Flows,https://pageflows.com/post/ios/booking-a-room/
+Searching,Flow,Mobile,"Search bar + Recent + Suggestions + Results + Filters + Categories + Empty state + History + Voice",Page Flows,https://pageflows.com/post/ios/searching/
+Finding a Recipe,Flow,Mobile,"Search + Categories + Ingredients + Dietary filters + Photos + Steps + Video + Save + Share + Reviews",Page Flows,https://pageflows.com/post/ios/finding-a-recipe/
+Adding a Project,Flow,Mobile,"Title + Description + Team + Timeline + Tasks + Templates + Privacy + Create + Invite + Dashboard",Page Flows,https://pageflows.com/post/ios/adding-a-project/
+Adding to Cart,Flow,Mobile,"Product + Quantity + Options + Price + Add + Cart preview + Continue shopping + Checkout + Save for later",Page Flows,https://pageflows.com/post/ios/adding-to-cart/
+Connecting to a Computer,Flow,Mobile,"Device discovery + Pairing + Permissions + Connection type + File transfer + Screen mirroring + Disconnect + Security",Page Flows,https://pageflows.com/post/ios/connecting-to-a-computer/
+Applying for a Job,Flow,Mobile,"Job listing + Resume + Cover letter + Application form + Submit + Status + Interview + Offer + Rejection",Page Flows,https://pageflows.com/post/ios/applying-for-a-job/
+Choosing a Tag,Flow,Mobile,"Tag list + Search + Create new + Color + Apply + Multiple + Remove + Suggestions + Recent",Page Flows,https://pageflows.com/post/ios/choosing-a-tag/
+Customizing Snap,Flow,Mobile,"Camera + Filters + Text + Stickers + Draw + Timer + Save + Share + Story + Memories",Page Flows,https://pageflows.com/post/ios/customizing-snap/
+Updating Profile Picture,Flow,Mobile,"Current photo + Upload + Crop + Filter + Save + Privacy + Visibility + Delete + Default + Album",Page Flows,https://pageflows.com/post/ios/updating-profile-picture/
+Help Center,Screen Pattern,Mobile,"Search + Categories + Articles + FAQs + Contact + Feedback + Chatbot + Tickets + History + Ratings",Page Flows,https://pageflows.com/post/ios/help-center/
+Adding Collaborators,Flow,Mobile,"Search + Invite + Role + Permissions + Access level + Confirmation + Notifications + Manage + Remove",Page Flows,https://pageflows.com/post/ios/adding-collaborators/
+Closing Your Account,Flow,Mobile,"Warning + Reason + Data export + Confirmation + Effective date + Recovery + Success + Feedback + Support",Page Flows,https://pageflows.com/post/ios/closing-your-account/
+Downloading,Flow,Mobile,"File selection + Quality + Format + Progress + Speed + Pause/Cancel + Location + Success + Open + Share",Page Flows,https://pageflows.com/post/ios/downloading/
+Adding Preferences,Flow,Mobile,"Category + Options + Toggle + Save + Reset + Import + Export + Sync + Recommendations + History",Page Flows,https://pageflows.com/post/ios/adding-preferences/
+Adding a Payment Method,Flow,Mobile,"Card input + Billing address + Validation + Security + Save + Default + Multiple + Delete + Edit + 3D Secure",Page Flows,https://pageflows.com/post/ios/adding-a-payment-method/
+Adding New Portfolio,Flow,Mobile,"Title + Description + Assets + Allocation + Risk + Performance + Save + Share + Rebalance + History",Page Flows,https://pageflows.com/post/ios/adding-new-portfolio/
+Liking Posts,Flow,Mobile,"Heart icon + Animation + Count + Notifications + Unlike + List + Share + Comment + Save + Analytics",Page Flows,https://pageflows.com/post/ios/liking-posts/
+Creating a Collection,Flow,Mobile,"Title + Description + Privacy + Add items + Cover image + Tags + Share + Collaborate + Edit + Delete",Page Flows,https://pageflows.com/post/ios/creating-a-collection/
+Deleting a Document,Flow,Mobile,"Select + Confirmation + Warning + Undo + Move to trash + Permanent delete + Recovery + History + Permissions",Page Flows,https://pageflows.com/post/ios/deleting-a-document/
+Adding Email Contact,Flow,Mobile,"Name + Email + Phone + Company + Notes + Tags + Save + Import + Sync + Duplicate detection + Groups",Page Flows,https://pageflows.com/post/ios/adding-email-contact/
+Deleting Scheduled Meeting,Flow,Mobile,"Calendar + Select + Cancel + Notify attendees + Reason + Reschedule option + Confirmation + History + Permissions",Page Flows,https://pageflows.com/post/ios/deleting-scheduled-meeting/
+Creating a Channel,Flow,Mobile,"Name + Description + Privacy + Members + Permissions + Topics + Create + Invite + Settings + Archive",Page Flows,https://pageflows.com/post/ios/creating-a-channel/
+Choosing Courses,Flow,Mobile,"Browse + Categories + Filters + Preview + Syllabus + Instructor + Reviews + Enroll + Payment + Certificate",Page Flows,https://pageflows.com/post/ios/choosing-courses/
+Adding Departments,Flow,Mobile,"Name + Description + Members + Permissions + Hierarchy + Create + Edit + Delete + Move + Reports",Page Flows,https://pageflows.com/post/ios/adding-departments/
+Updating Your Email,Flow,Mobile,"Current email + New email + Verification + Password + Confirmation + Notifications + Sync + Security + Recovery",Page Flows,https://pageflows.com/post/ios/updating-your-email/
+Bidding,Flow,Mobile,"Item + Current bid + Your bid + History + Auto-bid + Confirm + Payment + Shipping + Watch + Alerts",Page Flows,https://pageflows.com/post/ios/bidding/
+Creating a Challenge,Flow,Mobile,"Title + Description + Rules + Duration + Participants + Rewards + Create + Invite + Leaderboard + Progress",Page Flows,https://pageflows.com/post/ios/creating-a-challenge/
+Submitting a Bug Report,Flow,Mobile,"Category + Description + Screenshot + Steps + Severity + Contact + Submit + Confirmation + Ticket + Updates",Page Flows,https://pageflows.com/post/ios/submitting-a-bug-report/
+Completing a Level,Flow,Mobile,"Progress + Tasks + Checklist + Rewards + Celebration + Next level + Share + Leaderboard + History + Achievements",Page Flows,https://pageflows.com/post/ios/completing-a-level/
+Analytics,Screen Pattern,Mobile,"Charts + Metrics + Date range + Filters + Export + Real-time + Comparisons + Goals + Custom dashboards + Sharing",Page Flows,https://pageflows.com/post/ios/analytics/
+Tasks,Screen Pattern,Mobile,"List + Categories + Priorities + Due dates + Assignees + Status + Filters + Sort + Create + Complete + Archive",Page Flows,https://pageflows.com/post/ios/tasks/
+Adding a Section,Flow,Mobile,"Title + Description + Layout + Content + Style + Permissions + Create + Edit + Move + Delete + Duplicate",Page Flows,https://pageflows.com/post/ios/adding-a-section/
+Buying Something,Flow,Mobile,"Browse + Product + Details + Add to cart + Checkout + Payment + Confirmation + Tracking + Reviews + Returns",Page Flows,https://pageflows.com/post/ios/buying-something/
+Creating a File Request,Flow,Mobile,"Title + Description + Destination + Deadline + Permissions + Link + Share + Notifications + Collect + Manage",Page Flows,https://pageflows.com/post/ios/creating-a-file-request/
+Deleting History,Flow,Mobile,"Select + Confirmation + Warning + Clear all + Time range + Undo + Privacy + Export + Permissions + Settings",Page Flows,https://pageflows.com/post/ios/deleting-history/
+Following a User,Flow,Mobile,"Profile + Follow button + Confirmation + Notifications + Feed + Lists + Mute + Block + Suggestions + Analytics",Page Flows,https://pageflows.com/post/ios/following-a-user/
+Taking Quizzes,Flow,Mobile,"Quiz list + Start + Questions + Timer + Progress + Submit + Results + Review + Retake + Share + Leaderboard",Page Flows,https://pageflows.com/post/ios/taking-quizzes/
+Using AI Snaps,Flow,Mobile,"Camera + AI filter + Generate + Edit + Save + Share + Story + Discover + Trends + History + Settings",Page Flows,https://pageflows.com/post/ios/using-ai-snaps/
+Unblocking Users,Flow,Mobile,"Settings + Blocked list + Select + Unblock + Confirmation + Privacy + Notifications + History + Report + Support",Page Flows,https://pageflows.com/post/ios/unblocking-users/
+Starting a Fast,Flow,Mobile,"Timer + Goal + Type + Start + Progress + Notifications + History + Stats + Share + Achievements + Settings",Page Flows,https://pageflows.com/post/ios/starting-a-fast/
+Creating a Business Account,Flow,Mobile,"Business type + Name + Contact + Verification + Tax + Bank + Team + Permissions + Dashboard + Analytics",Page Flows,https://pageflows.com/post/ios/creating-a-business-account/
+Managing Flashcards,Flow,Mobile,"Create + Edit + Delete + Organize + Tags + Study + Progress + Spaced repetition + Share + Import + Export",Page Flows,https://pageflows.com/post/ios/managing-flashcards/
+Power-ups,Flow,Mobile,"Browse + Select + Activate + Duration + Effects + Cost + Manage + Disable + History + Notifications + Settings",Page Flows,https://pageflows.com/post/ios/power-ups/
+Deleting a List,Flow,Mobile,"Select + Confirmation + Warning + Move to archive + Permanent delete + Recovery + History + Permissions + Export",Page Flows,https://pageflows.com/post/ios/deleting-a-list/
+Adding a Vehicle,Flow,Mobile,"Make + Model + Year + Color + License + Photos + Insurance + Save + Edit + Delete + Default + Documents",Page Flows,https://pageflows.com/post/ios/adding-a-vehicle/
+Creating a Task,Flow,Mobile,"Title + Description + Due date + Priority + Assignee + Tags + Subtasks + Attachments + Create + Notifications + Recurring",Page Flows,https://pageflows.com/post/ios/creating-a-task/
+Blocking a User,Flow,Mobile,"Profile + Block button + Confirmation + Privacy + Notifications + History + Report + Unblock + Settings + Support",Page Flows,https://pageflows.com/post/ios/blocking-a-user/
+Cancelling a Booking,Flow,Mobile,"Booking details + Cancel + Reason + Refund policy + Confirmation + History + Rebook + Support + Notifications + Penalty",Page Flows,https://pageflows.com/post/ios/cancelling-a-booking/
+Duplicating a Document,Flow,Mobile,"Select + Duplicate + Rename + Location + Permissions + Edit + Share + History + Version + Compare + Merge",Page Flows,https://pageflows.com/post/ios/duplicating-a-document/
+Creating a Folder,Flow,Mobile,"Name + Location + Permissions + Color + Icon + Create + Move + Rename + Delete + Share + Subfolders",Page Flows,https://pageflows.com/post/ios/creating-a-folder/
+Inviting Friends,Flow,Mobile,"Contact list + Select + Message + Invite link + Social + Rewards + Confirmation + Notifications + Track + Remind",Page Flows,https://pageflows.com/post/ios/inviting-friends/
+Adding an Employee,Flow,Mobile,"Name + Email + Role + Department + Permissions + Start date + Onboarding + Equipment + Payroll + Benefits + Confirm",Page Flows,https://pageflows.com/post/ios/adding-an-employee/
+Creating a Project,Flow,Mobile,"Title + Description + Team + Timeline + Tasks + Templates + Privacy + Create + Invite + Dashboard + Milestones",Page Flows,https://pageflows.com/post/ios/creating-a-project/
+Adding Shipping Address,Flow,Mobile,"Address fields + Validation + Map + Save + Default + Multiple + Delete + Edit + Instructions + Delivery preferences",Page Flows,https://pageflows.com/post/ios/adding-shipping-address/
+Creating an Activity,Flow,Mobile,"Title + Type + Date + Time + Location + Participants + Description + Create + Invite + Reminders + Recurring",Page Flows,https://pageflows.com/post/ios/creating-an-activity/
+Buying a Gift Card,Flow,Mobile,"Amount + Design + Message + Recipient + Delivery + Payment + Confirmation + History + Balance + Redeem + Expiry",Page Flows,https://pageflows.com/post/ios/buying-a-gift-card/
+Logging Out,Flow,Mobile,"Confirmation + Data preservation + Session end + Redirect + Security + All devices option + Feedback + Remember me + Biometric",Page Flows,https://pageflows.com/post/ios/logging-out/
