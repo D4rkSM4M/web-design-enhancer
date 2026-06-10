@@ -398,24 +398,276 @@ Used by professionals to **save 10+ hours per week** through automation.
 
 ---
 
+## 8. Emojis in UI Chrome (A1)
+
+### ❌ BAD - AI Slop
+
+```html
+<!-- Emojis in headings and buttons = immediately recognizable as AI -->
+<h2>✨ Nos fonctionnalités</h2>
+<button>🚀 Démarrer maintenant</button>
+<li>📊 Tableau de bord</li>
+<span class="badge">⚡ Premium</span>
+```
+
+**Why it's bad:**
+- Emojis render differently across OS, browser, font
+- Cannot be styled (color, size independent of text)
+- Universally recognized AI signature
+- Breaks screen reader pronunciation
+
+### ✅ GOOD - Inline SVG or No Icon
+
+```html
+<!-- Inline SVG: controllable, accessible, consistent -->
+<h2>
+  <svg aria-hidden="true" width="20" height="20">...</svg>
+  Nos fonctionnalités
+</h2>
+<button type="button">Démarrer</button>
+<li>Tableau de bord</li>
+```
+
+---
+
+## 9. Hardcoded Fake Statistics (A2)
+
+### ❌ BAD - AI Slop
+
+```html
+<!-- Numbers invented by the model — unverifiable, liability -->
+<div class="stat">10,000+ utilisateurs satisfaits</div>
+<div class="stat">99.9% de disponibilité garantie</div>
+<div class="stat">500ms temps de réponse moyen</div>
+```
+
+**Why it's bad:**
+- Numbers are invented — legal liability
+- Will be wrong the moment real data exists
+- Screams "AI wrote this"
+
+### ✅ GOOD - Real data or no stats
+
+```html
+<!-- Loaded from API/CMS -->
+<div class="stat" data-stat-key="user_count">Chargement...</div>
+<!-- Or: simply remove stats section until real data is available -->
+```
+
+---
+
+## 10. Invented Trusted-By / Testimonial Sections (A3-A4)
+
+### ❌ BAD - AI Slop
+
+```html
+<!-- Section invented entirely, no real data -->
+<section class="trusted-by">
+  <img src="/logos/google.svg" alt="Google" />
+  <img src="/logos/microsoft.svg" alt="Microsoft" />
+</section>
+
+<blockquote>
+  "Ce produit a changé notre façon de travailler."
+  <cite>— Sarah Dupont, CEO de TechCorp</cite>
+</blockquote>
+```
+
+**Why it's bad:**
+- Fictitious social proof = misleading and potentially illegal
+- Sarah Dupont does not exist
+- AI hallucinated a business you don't have
+
+### ✅ GOOD - Real data only, or omit entirely
+
+```html
+<!-- Only render when real data is provided by CMS/API -->
+<!-- If no real testimonials exist: remove the section entirely -->
+<!-- Note in structural-lock.md: "Testimonials: stub ready, awaiting real data" -->
+```
+
+---
+
+## 11. `!important` Abuse and Arbitrary z-index (B4-B5)
+
+### ❌ BAD - AI Slop
+
+```css
+/* Patching cascade failures with !important instead of fixing specificity */
+.card {
+  margin: 0 !important;
+  display: flex !important;
+}
+
+/* Arbitrary z-index with no documented rationale */
+.modal    { z-index: 9999; }
+.overlay  { z-index: 9998; }
+.tooltip  { z-index: 999999; }
+```
+
+**Why it's bad:**
+- `!important` signals the cascade is broken, not fixed
+- Arbitrary z-index values are unmanageable at scale
+
+### ✅ GOOD - Fixed cascade, documented z-index scale
+
+```css
+/* Fix: increase specificity correctly */
+.surface .card { margin: 0; display: flex; }
+
+/* DESIGN.md §5 — z-index scale */
+:root {
+  --z-base:    1;
+  --z-raised:  10;
+  --z-overlay: 100;
+  --z-modal:   200;
+  --z-toast:   300;
+}
+.modal   { z-index: var(--z-modal); }
+.overlay { z-index: var(--z-overlay); }
+```
+
+---
+
+## 12. Accessibility Violations (C1-C4)
+
+### ❌ BAD - AI Slop
+
+```html
+<!-- C1: img without alt -->
+<img src="/hero.jpg" />
+
+<!-- C2: button without type -->
+<button>Envoyer</button>
+
+<!-- C3: input without label -->
+<input type="email" placeholder="Votre email" />
+
+<!-- C4: div with click but not keyboard accessible -->
+<div class="card" onclick="openModal()">Voir détails</div>
+```
+
+**Why it's bad:**
+- Screen readers cannot describe unlabelled images
+- `<button>` without `type` defaults to `submit` — breaks non-form buttons
+- Placeholder is not a label — disappears on input
+- `<div onclick>` is invisible to keyboard and assistive technology
+
+### ✅ GOOD - Fully accessible markup
+
+```html
+<!-- C1: descriptive alt -->
+<img src="/hero.jpg" alt="Équipe au travail dans un bureau lumineux" />
+<!-- Decorative: empty alt string, NOT omitted -->
+<img src="/decoration.svg" alt="" />
+
+<!-- C2: explicit type -->
+<button type="submit">Envoyer</button>
+<button type="button" onclick="reset()">Réinitialiser</button>
+
+<!-- C3: associated label -->
+<label for="email">Adresse email</label>
+<input type="email" id="email" placeholder="nom@exemple.com" />
+
+<!-- C4: real button -->
+<button type="button" onclick="openModal()">Voir détails</button>
+```
+
+---
+
+## 13. Scope Creep (D1)
+
+### ❌ BAD - AI Slop
+
+```
+Brief: "Create a product landing page with hero, features, and contact form."
+
+AI generates:
+- /index.html         ← requested
+- /dashboard.html     ← NOT requested
+- /admin.html         ← NOT requested
+- /analytics.html     ← NOT requested
+```
+
+**Why it's bad:**
+- Unrequested code must be reviewed, tested, maintained
+- May conflict with existing architecture decisions
+- Reveals the model "imagined" a product instead of reading the brief
+
+### ✅ GOOD - Strict brief adherence
+
+```
+Brief: "Create a product landing page with hero, features, and contact form."
+
+Generates:
+- /index.html   ← hero + features + contact form (exactly what was asked)
+
+Note in structural-lock.md:
+"Scope: single-page landing. Dashboard, admin = out of scope."
+```
+
+---
+
 ## ✅ Antipatterns Checklist
 
 Before delivery, verify:
 
+**G-group — Visual/UI signatures**
 - [ ] **Icons**: Custom SVG or consistent pack (not random Lucide)
 - [ ] **Gradients**: Justified by role, max 2-3 gradients
 - [ ] **Fonts**: Exactly 2 (display + body)
 - [ ] **Spacing**: All multiples of 8px
 - [ ] **Radii**: All multiples of 4px
 - [ ] **Structure**: Unique and intentional (not a template)
-- [ ] **Text**: Precise descriptions (no buzzwords)
-- [ ] **Buttons**: Clear hierarchy (max 3 variants)
+- [ ] **Text**: Precise descriptions (no buzzwords, no emojis in headings)
+- [ ] **Buttons**: Clear hierarchy (max 3 variants), always `type` attribute
 - [ ] **Colors**: 4-8 with semantic roles
-- [ ] **Animations**: All ≤ 400ms
+- [ ] **Animations**: All ≤ 400ms, none unsolicited
+- [ ] **Status badges**: No OPTIMAL/STABLE/OFFLINE pills unless in spec
+- [ ] **Monospace fonts**: Only on `<code>`, `<pre>`, `<kbd>` elements
 
-**Run:**
+**A-group — Content authenticity**
+- [ ] **Emojis**: None in headings, buttons, nav or status labels
+- [ ] **Fake stats**: No `10,000+ users`, `99.9% uptime` unless from real data source
+- [ ] **Trusted-by section**: Not present unless real partner logos supplied
+- [ ] **Testimonials**: Not present unless real CMS/API data supplied
+- [ ] **Lorem ipsum**: No placeholder text in any delivered file
+- [ ] **Placeholder images**: No `picsum.photos`, `via.placeholder.com`, `dummyimage.com`
+
+**B-group — CSS quality**
+- [ ] **`!important`**: Not used on layout properties — cascade fixed instead
+- [ ] **z-index**: Only values documented in DESIGN.md §5, no 9999/99999
+- [ ] **Inline styles**: None on structural/layout properties
+
+**C-group — Accessibility (WCAG 2.1 AA)**
+- [ ] **`<img>` alt**: Every `<img>` has `alt` (empty string `alt=""` acceptable for decorative)
+- [ ] **`<button>` type**: Every `<button>` has `type="button"` or `type="submit"`
+- [ ] **Input labels**: Every `<input>`, `<textarea>`, `<select>` has `<label for>` or `aria-label`
+- [ ] **div onclick**: No `<div onClick>` without `role="button"` + `tabIndex={0}` + `onKeyDown`
+- [ ] **`<html lang>`**: Present on every page
+- [ ] **`<title>`**: Present and non-empty on every page
+- [ ] **Empty links**: No `<a>` without text content or `aria-label`
+- [ ] **`console.log`**: None in delivered files (remove or guard with `NODE_ENV`)
+- [ ] **TODO/FIXME**: No unresolved comments in delivered files
+
+**D-group — Behavioural discipline**
+- [ ] **Scope creep**: Only pages/components explicitly in the brief
+- [ ] **Naming**: Component and file names unchanged from the brief
+- [ ] **Mock data**: No hardcoded URLs, no `MOCK_DATA` constants in production code
+- [ ] **Responsive**: Minimum 375px mobile + 1280px desktop declared and tested
+
+**Run (full validation suite):**
 ```bash
-python3 scripts/detect_ai_slop.py --design DESIGN.md --code ./client/src
+python3 scripts/check.py --final --code ./src
+python3 scripts/check.py --final --code ./src --verbose   # show fix instructions on failure
 ```
 
-Score ≥ 80/100 = ✅ Ready for delivery
+**Run (individual tools):**
+```bash
+python3 scripts/detect_ai_slop.py --design DESIGN.md --code ./src
+python3 scripts/detect_ai_slop.py --design DESIGN.md --code ./src --json   # machine-readable
+python3 scripts/audit_accessibility.py --path ./src
+python3 scripts/audit_spacing.py --path ./src
+```
+
+All tools exit 0 = ✅ Delivery authorized

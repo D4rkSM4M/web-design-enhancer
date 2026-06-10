@@ -7,6 +7,7 @@ Compatible with any AI model — no platform dependency.
 Usage:
   python3 scripts/check.py --gate 0          # Phase 0 executed?
   python3 scripts/check.py --gate 1          # DESIGN.md valid? (blocks before code)
+  python3 scripts/check.py --gate 2          # Structural lock committed? (blocks before code)
   python3 scripts/check.py --final           # Full validation before delivery
   python3 scripts/check.py --final --code ./src
 
@@ -33,24 +34,23 @@ CYAN   = "\033[96m"
 BOLD   = "\033[1m"
 RESET  = "\033[0m"
 
-def ok(msg):  print(f"  {GREEN}[OK] {msg}{RESET}")
+def ok(msg):   print(f"  {GREEN}[OK] {msg}{RESET}")
 def fail(msg): print(f"  {RED}[ERROR] {msg}{RESET}")
 def warn(msg): print(f"  {YELLOW}[WARN] {msg}{RESET}")
 def info(msg): print(f"  {CYAN}->  {msg}{RESET}")
 
-SCRIPTS_DIR = Path(__file__).parent
-LOG_FILE    = Path(".phase-log.json")
-DESIGN_FILE = Path("DESIGN.md")
+SCRIPTS_DIR  = Path(__file__).parent
+LOG_FILE     = Path(".phase-log.json")
+DESIGN_FILE  = Path("DESIGN.md")
+LOCK_FILE    = Path("structural-lock.md")
 
 # Gates whose validity depends on the content of DESIGN.md
-# (if DESIGN.md changes after pass, the gate is auto-invalidated)
 DESIGN_DEPENDENT_GATES = {"gate0", "gate1"}
 
 
 # --- Phase log -------------------------------------------------------------
 
 def _design_hash():
-    """SHA-256 of the current DESIGN.md, or None if absent."""
     if not DESIGN_FILE.exists():
         return None
     return hashlib.sha256(DESIGN_FILE.read_bytes()).hexdigest()
@@ -69,8 +69,6 @@ def save_log(log):
 def mark_passed(gate):
     log = load_log()
     entry = {"passed": True, "at": datetime.now().isoformat()}
-    # For gates that depend on DESIGN.md, persist the current hash.
-    # Any later modification of the file invalidates the pass.
     if gate in DESIGN_DEPENDENT_GATES:
         h = _design_hash()
         if h is not None:
@@ -79,24 +77,117 @@ def mark_passed(gate):
     save_log(log)
 
 def gate_passed(gate):
-    """Returns True if the gate was validated AND DESIGN.md hasn't changed since."""
     entry = load_log().get(gate, {})
     if not entry.get("passed", False):
         return False
-    # Auto-invalidate if DESIGN.md changed since the pass
     if gate in DESIGN_DEPENDENT_GATES:
-        stored_hash = entry.get("design_hash")
+        stored_hash  = entry.get("design_hash")
         current_hash = _design_hash()
         if stored_hash and current_hash and stored_hash != current_hash:
             warn(f"{gate} invalidated: DESIGN.md was modified since validation.")
             info(f"Re-run: python3 scripts/check.py --gate {gate[-1]}")
             return False
-        # If the gate depends on DESIGN.md but no hash was stored
-        # (old log in pre-hash format), invalidate as a precaution
         if stored_hash is None and current_hash is not None:
             warn(f"{gate}: stale log (no hash) — re-run the gate.")
             return False
     return True
+
+
+# --- Stack detection -------------------------------------------------------
+
+def _detect_project_stack() -> str:
+    """
+    Auto-detect the project's tech stack.
+
+    Priority:
+      1. package.json → Next.js / React
+      2. *.tsx / *.jsx files anywhere → React
+      3. *.html files present → Vanilla HTML/CSS/JS
+      4. Unknown
+    """
+    if Path("package.json").exists():
+        pkg = Path("package.json").read_text(encoding="utf-8", errors="ignore").lower()
+        if "\"next\"" in pkg or "next " in pkg:
+            return "nextjs"
+        if "\"react\"" in pkg or "react-dom" in pkg:
+            return "react"
+
+    tsx_files = list(Path(".").rglob("*.tsx")) + list(Path(".").rglob("*.jsx"))
+    if tsx_files:
+        return "react"
+
+    html_files = list(Path(".").rglob("*.html"))
+    if html_files:
+        return "vanilla-html"
+
+    return "unknown"
+
+
+def _validate_stack_consistency(stack: str) -> list:
+    """
+    Validate that the project implementation matches the detected stack rules.
+
+    React/Next.js → shadcn/ui must be present (package.json or TSX imports)
+    Vanilla HTML  → CSS custom properties (--var) must be used in .css files
+    """
+    errors = []
+
+    if stack in ("react", "nextjs"):
+        # shadcn/ui must be present
+        has_shadcn = False
+        if Path("package.json").exists():
+            has_shadcn = "shadcn" in Path("package.json").read_text(encoding="utf-8", errors="ignore").lower()
+        if not has_shadcn:
+            # Check for @/components/ui imports in TSX
+            for f in list(Path(".").rglob("*.tsx"))[:20]:
+                try:
+                    if "@/components/ui" in f.read_text(encoding="utf-8", errors="ignore"):
+                        has_shadcn = True
+                        break
+                except Exception:
+                    pass
+        if not has_shadcn:
+            warn("React/Next.js project — shadcn/ui not detected.")
+            info("Phase 2 requires: import from '@/components/ui' or 'shadcn' in package.json")
+            info("If you're using another component library, add a justification in structural-lock.md")
+            # Warning only — not a blocking error (another lib may be justified)
+
+    elif stack == "vanilla-html":
+        # CSS custom properties must be used
+        css_files = list(Path(".").rglob("*.css"))
+        has_css_vars = False
+        for f in css_files[:10]:
+            try:
+                if re.search(r"--[a-zA-Z][\w-]+\s*:", f.read_text(encoding="utf-8", errors="ignore")):
+                    has_css_vars = True
+                    break
+            except Exception:
+                pass
+        if not has_css_vars:
+            errors.append(
+                "Vanilla HTML project but no CSS custom properties (--var) found in .css files. "
+                "Phase 2 requires CSS custom properties from DESIGN.md tokens (--primary, --background, etc.)"
+            )
+        else:
+            ok("CSS custom properties detected in .css files ✓")
+
+        # Semantic HTML check — at least one semantic tag
+        html_files = list(Path(".").rglob("*.html"))
+        has_semantic = False
+        semantic_tags = ["<main", "<nav", "<header", "<footer", "<article", "<section", "<aside"]
+        for f in html_files[:5]:
+            try:
+                content = f.read_text(encoding="utf-8", errors="ignore")
+                if any(tag in content for tag in semantic_tags):
+                    has_semantic = True
+                    break
+            except Exception:
+                pass
+        if html_files and not has_semantic:
+            warn("Vanilla HTML project but no semantic HTML5 elements detected (main/nav/header/footer...).")
+            info("Phase 2 for vanilla HTML: use semantic elements instead of generic <div>.")
+
+    return errors
 
 
 # --- Gate 0 — Phase 0 execution proof --------------------------------------
@@ -108,7 +199,7 @@ def check_gate0():
 
     errors = []
 
-    # 1. design-system-output.md present (produced by search.py --save)
+    # 1. design-system-output.md
     ds_files = list(Path(".").glob("design-system-output*.md"))
     if ds_files:
         ok(f"design-system-output.md found ({ds_files[0].name})")
@@ -117,7 +208,7 @@ def check_gate0():
         info("Run: python3 scripts/search.py \"<description>\" --design-system -p \"<Project>\" --save")
         errors.append("search.py not executed")
 
-    # 2. A getdesign reference DESIGN.md file present
+    # 2. getdesign reference DESIGN.md
     getdesign_files = list(Path(".").glob("getdesign-*.md")) + list(Path(".").glob("brand-*.md"))
     if getdesign_files:
         ok(f"getdesign.md reference found ({getdesign_files[0].name})")
@@ -127,19 +218,18 @@ def check_gate0():
         info("Brand examples: vercel / stripe / linear / notion / supabase")
         errors.append("getdesign.md not executed")
 
-    # 3. Project DESIGN.md present
-    if Path("DESIGN.md").exists():
+    # 3. DESIGN.md present
+    if DESIGN_FILE.exists():
         ok("DESIGN.md present")
     else:
         fail("DESIGN.md missing — create from templates/design-md-template.md")
         errors.append("DESIGN.md missing")
 
-    # 4. Sources Phase 0 section in DESIGN.md
-    if Path("DESIGN.md").exists():
-        content = Path("DESIGN.md").read_text(encoding="utf-8")
+    # 4. Phase 0 section in DESIGN.md
+    if DESIGN_FILE.exists():
+        content = DESIGN_FILE.read_text(encoding="utf-8")
         if "## 0. Sources Phase 0" in content:
             ok("Section '## 0. Sources Phase 0' present in DESIGN.md")
-            # Check that placeholders were replaced
             if "[Ex:" in content or "<brand>" in content or "<description>" in content:
                 fail("DESIGN.md still contains unfilled placeholders")
                 info("Replace all [Ex: ...] and <placeholder> with real values")
@@ -149,7 +239,17 @@ def check_gate0():
             info("Use templates/design-md-template.md as a base")
             errors.append("Sources section missing from DESIGN.md")
 
-    # Result
+    # 5. Stack auto-detection
+    stack = _detect_project_stack()
+    if stack != "unknown":
+        ok(f"Stack auto-detected: {stack}")
+        log = load_log()
+        log["detected_stack"] = stack
+        save_log(log)
+    else:
+        warn("Stack not auto-detected.")
+        info("Add package.json (React/Next.js) or .html files (Vanilla) so the stack can be identified.")
+
     _print_result(errors, "GATE 0")
     if not errors:
         mark_passed("gate0")
@@ -163,20 +263,18 @@ def check_gate1():
     print(f"{BOLD}  GATE 1 — DESIGN.md valid? (before any code){RESET}")
     print(f"{BOLD}{'='*60}{RESET}")
 
-    # Gate 0 must have passed
     if not gate_passed("gate0"):
         fail("Gate 0 not validated — run first: python3 scripts/check.py --gate 0")
         _print_result(["Gate 0 not passed"], "GATE 1")
         return False
 
-    if not Path("DESIGN.md").exists():
+    if not DESIGN_FILE.exists():
         fail("DESIGN.md missing")
         _print_result(["DESIGN.md missing"], "GATE 1")
         return False
 
     ok("Gate 0 validated")
 
-    # Run validate_design.py
     result = subprocess.run(
         [sys.executable, str(SCRIPTS_DIR / "validate_design.py"), "DESIGN.md"],
         capture_output=True, text=True
@@ -188,9 +286,100 @@ def check_gate1():
     return False
 
 
+# --- Gate 2 — Structural Decision Lock -------------------------------------
+
+def check_gate2():
+    """
+    Gate 2 — Phase 2a: Structural Decision Lock.
+
+    Validates that the agent committed to 3 explicit structural decisions
+    in structural-lock.md BEFORE writing any code.
+
+    structural-lock.md format:
+      # Structural Lock
+      1. Card structure: surface-card bg, 8px radius, 24px padding (§6)
+      2. Layout pattern: split-pane, left sidebar 280px, dense header (§1)
+      3. Primary button: filled #22c55e, 4px radius, 44px height (§6)
+    """
+    print(f"\n{BOLD}{'='*60}{RESET}")
+    print(f"{BOLD}  GATE 2 — Structural Decision Lock committed?{RESET}")
+    print(f"{BOLD}{'='*60}{RESET}")
+
+    if not gate_passed("gate1"):
+        fail("Gate 1 not validated — run first: python3 scripts/check.py --gate 1")
+        _print_result(["Gate 1 not passed"], "GATE 2")
+        return False
+
+    ok("Gate 1 validated")
+    errors = []
+
+    # ── 1. structural-lock.md must exist ────────────────────────────────
+    if not LOCK_FILE.exists():
+        fail(f"{LOCK_FILE} not found")
+        info("Create this file with 3 structural decisions before writing any code.")
+        info("")
+        info("  Required format:")
+        info("  # Structural Lock")
+        info("  1. Card structure: [exact description] (§6)")
+        info("  2. Layout pattern: [exact description] (§1 or §6)")
+        info("  3. Primary button/CTA: [exact description] (§6)")
+        info("")
+        info("  For vanilla HTML targets: quote Card structure, Section pattern, Button shape.")
+        info("  For React/Next.js targets: same — plus confirm shadcn/ui primitive used.")
+        errors.append("structural-lock.md missing")
+        _print_result(errors, "GATE 2")
+        return False
+
+    ok(f"{LOCK_FILE} found")
+    lock_content = LOCK_FILE.read_text(encoding="utf-8")
+
+    # ── 2. Minimum 3 numbered decisions ─────────────────────────────────
+    numbered = re.findall(r"^\s*\d+\.", lock_content, re.MULTILINE)
+    if len(numbered) < 3:
+        fail(f"Only {len(numbered)} structural decision(s) — minimum 3 required")
+        info("Each decision must start with a number: '1. Card structure: ...'")
+        errors.append(f"Insufficient structural decisions ({len(numbered)}/3)")
+    else:
+        ok(f"{len(numbered)} structural decision(s) committed ✓")
+
+    # ── 3. Each decision must reference a DESIGN.md section ─────────────
+    section_refs = re.findall(r"§\d+", lock_content)
+    if len(section_refs) < 3:
+        warn(
+            f"Only {len(section_refs)} DESIGN.md section reference(s) found — "
+            f"each decision should cite §N (e.g. §6, §1, §7)"
+        )
+        # Warning only — intent is clear even without §-refs in every sentence
+    else:
+        ok(f"{len(section_refs)} DESIGN.md section reference(s) found ✓")
+
+    # ── 4. No unfilled placeholders ──────────────────────────────────────
+    placeholders = re.findall(r"\[(?:[A-Z]\s*\||\s*Ex:)", lock_content, re.IGNORECASE)
+    if placeholders:
+        fail(f"Unfilled placeholder(s) in {LOCK_FILE}: {placeholders[:3]}")
+        info("Replace all '[A | B | C]' and '[Ex: ...]' with committed values")
+        errors.append("Unfilled placeholders in structural-lock.md")
+    else:
+        ok("No unfilled placeholders ✓")
+
+    # ── 5. Stack-specific consistency check ──────────────────────────────
+    stack = load_log().get("detected_stack", _detect_project_stack())
+    if stack != "unknown":
+        info(f"Stack in use: {stack}")
+        stack_errors = _validate_stack_consistency(stack)
+        errors.extend(stack_errors)
+    else:
+        warn("Stack unknown — run check.py --gate 0 first to enable stack validation")
+
+    _print_result(errors, "GATE 2")
+    if not errors:
+        mark_passed("gate2")
+    return len(errors) == 0
+
+
 # --- Final Gate — Full validation before delivery --------------------------
 
-def check_final(code_path=None):
+def check_final(code_path=None, verbose=False):
     print(f"\n{BOLD}{'='*60}{RESET}")
     print(f"{BOLD}  FINAL GATE — Validation before delivery{RESET}")
     print(f"{BOLD}{'='*60}{RESET}")
@@ -200,12 +389,20 @@ def check_final(code_path=None):
         fail("Gate 1 not validated — run first: python3 scripts/check.py --gate 1")
         _print_result(["Gate 1 not passed"], "FINAL GATE")
         return False
-
     ok("Gate 1 validated")
+
+    # Gate 2 must have passed
+    if not gate_passed("gate2"):
+        fail("Gate 2 not validated — run first: python3 scripts/check.py --gate 2")
+        info("Gate 2 ensures the structural lock was committed before any code was written.")
+        _print_result(["Gate 2 not passed"], "FINAL GATE")
+        return False
+    ok("Gate 2 validated")
+
     errors = []
 
     # 1. detect_ai_slop.py
-    print(f"\n{CYAN}[1/3] Detecting AI antipatterns...{RESET}")
+    print(f"\n{CYAN}[1/6] Detecting AI antipatterns (HTML + CSS + JSX + code quality)...{RESET}")
     slop_args = [sys.executable, str(SCRIPTS_DIR / "detect_ai_slop.py"), "--design", "DESIGN.md"]
     if code_path:
         slop_args += ["--code", code_path]
@@ -213,9 +410,21 @@ def check_final(code_path=None):
     print(r.stdout)
     if r.returncode != 0:
         errors.append("detect_ai_slop.py — antipatterns detected")
+        if verbose:
+            # Re-run in JSON mode to get machine-readable fix instructions
+            print(f"\n{YELLOW}  Fix instructions (JSON mode):{RESET}")
+            json_args = slop_args + ["--json"]
+            rj = subprocess.run(json_args, capture_output=True, text=True)
+            try:
+                data = json.loads(rj.stdout)
+                for v in data.get("violations", [])[:10]:  # cap at 10
+                    print(f"\n  {RED}[{v.get('type','?')}]{RESET} {v.get('message','')}")
+                    print(f"  {CYAN}Fix:{RESET} {v.get('fix_instruction','see message')}")
+            except Exception:
+                print(rj.stdout)
 
     # 2. audit_spacing.py
-    print(f"\n{CYAN}[2/3] 8px grid audit...{RESET}")
+    print(f"\n{CYAN}[2/6] 8px grid audit...{RESET}")
     spacing_path = code_path or "."
     r = subprocess.run(
         [sys.executable, str(SCRIPTS_DIR / "audit_spacing.py"), "--path", spacing_path],
@@ -226,7 +435,7 @@ def check_final(code_path=None):
         errors.append("audit_spacing.py — 8px grid violations")
 
     # 3. validate_design.py (final pass)
-    print(f"\n{CYAN}[3/4] Final DESIGN.md validation...{RESET}")
+    print(f"\n{CYAN}[3/6] Final DESIGN.md validation...{RESET}")
     r = subprocess.run(
         [sys.executable, str(SCRIPTS_DIR / "validate_design.py"), "DESIGN.md"],
         capture_output=True, text=True
@@ -236,7 +445,7 @@ def check_final(code_path=None):
         errors.append("validate_design.py — DESIGN.md contract not respected")
 
     # 4. diff_design_vs_code.py
-    print(f"\n{CYAN}[4/4] DESIGN.md <-> code diff...{RESET}")
+    print(f"\n{CYAN}[4/6] DESIGN.md <-> code diff...{RESET}")
     if code_path:
         r = subprocess.run(
             [sys.executable, str(SCRIPTS_DIR / "diff_design_vs_code.py"), "DESIGN.md", "--code", code_path],
@@ -247,6 +456,43 @@ def check_final(code_path=None):
             errors.append("diff_design_vs_code.py — code diverges from DESIGN.md")
     else:
         warn("diff_design_vs_code.py skipped (no --code provided)")
+
+    # 5. audit_accessibility.py
+    print(f"\n{CYAN}[5/6] WCAG 2.1 AA accessibility audit...{RESET}")
+    a11y_script = SCRIPTS_DIR / "audit_accessibility.py"
+    if a11y_script.exists():
+        a11y_args = [sys.executable, str(a11y_script)]
+        if code_path:
+            a11y_args += ["--path", code_path]
+            if verbose:
+                a11y_args += ["--json"]
+        else:
+            a11y_args += ["--path", "."]
+        r = subprocess.run(a11y_args, capture_output=True, text=True)
+        print(r.stdout)
+        if r.returncode != 0:
+            errors.append("audit_accessibility.py — WCAG 2.1 violations found")
+    else:
+        warn("audit_accessibility.py not found — skipping accessibility check")
+
+    # 6. audit_style_uniqueness.py
+    print(f"\n{CYAN}[6/6] Style uniqueness audit (Generic AI Template detector)...{RESET}")
+    uniqueness_script = SCRIPTS_DIR / "audit_style_uniqueness.py"
+    if uniqueness_script.exists():
+        uniq_args = [sys.executable, str(uniqueness_script), "--path", code_path or "."]
+        if verbose:
+            uniq_args += ["--json"]
+        r = subprocess.run(uniq_args, capture_output=True, text=True)
+        print(r.stdout)
+        if r.returncode == 2:
+            errors.append(
+                "audit_style_uniqueness.py — BLOCKED: design score > 65/100 (Generic AI Template detected). "
+                "Differentiate the design before delivery — see references/design-archetypes.md."
+            )
+        elif r.returncode == 1:
+            warn("audit_style_uniqueness.py — WARNING: template score elevated. Fix flagged signals.")
+    else:
+        warn("audit_style_uniqueness.py not found — skipping style uniqueness check")
 
     _print_result(errors, "FINAL GATE")
     if not errors:
@@ -273,7 +519,8 @@ def _print_delivery_ok():
     print(f"""
 {GREEN}{BOLD}+----------------------------------------------+
 |  [OK]  DELIVERY AUTHORIZED                    |
-|  All 3 gates green. Zero AI slop detected.    |
+|  All 6 gates green. Zero AI slop detected.     |
+|  Design is unique — not a Generic AI Template. |
 +----------------------------------------------+{RESET}
 """)
 
@@ -283,17 +530,22 @@ def _print_delivery_ok():
 def main():
     parser = argparse.ArgumentParser(description="web-design-enhancer — validation orchestrator")
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--gate", type=int, choices=[0, 1], help="Check a specific gate (0 or 1)")
+    group.add_argument("--gate", type=int, choices=[0, 1, 2],
+                       help="Check a specific gate (0=Phase0, 1=DESIGN.md, 2=StructuralLock)")
     group.add_argument("--final", action="store_true", help="Full validation before delivery")
-    parser.add_argument("--code", type=str, default=None, help="Source code path (for --final)")
+    parser.add_argument("--code",    type=str, default=None,  help="Source code path (for --final)")
+    parser.add_argument("--verbose", action="store_true",
+                        help="When --final fails, print fix_instructions from detect_ai_slop --json")
     args = parser.parse_args()
 
     if args.gate == 0:
         success = check_gate0()
     elif args.gate == 1:
         success = check_gate1()
+    elif args.gate == 2:
+        success = check_gate2()
     elif args.final:
-        success = check_final(args.code)
+        success = check_final(args.code, verbose=args.verbose)
 
     sys.exit(0 if success else 1)
 

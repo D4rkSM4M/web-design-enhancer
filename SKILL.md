@@ -123,6 +123,11 @@ If the answer is yes → replace it with something specific to the real project.
 | Decorative `hero badge` ("SecOps & Admin") | Info is already in H1/H2 | Remove — badge info must live in copy |
 | Lucide icons on **every** element | Generic, interchangeable icons | Custom SVG or icons limited to functional elements |
 | `monitoring style (Grafana/Datadog)` as theme | Generic AI choice for sysadmin profiles | Identify what's unique to the project, not the sector |
+| Operational status pills | `OPTIMAL`, `STABLE`, `CHARGE`, `OFFLINE`, `CRITICAL` in colored pills | Sentence-case status with semantic color: `<span class="status-ok">Optimal</span>` |
+| Machine IDs in the UI | `ID: VALVE_01`, `ID: FAN_01` labels visible to users | Use human-readable device names from the data model |
+| Fake system console | `[17:30:00] SYSTEM:`, `TELEMETRY:`, `AUTO-PILOT:`, `Console Système` section | Remove entirely — never in brief, always AI injection |
+| ALL_CAPS operational labels | `PILOTE AUTOMATIQUE`, `AUTOMATIQUE (FERMÉ)`, `ACTIF - 40%` | Sentence case: `Pilote automatique`, `Automatique — fermé` |
+| `font-family: monospace` on UI labels | Systematic AI signature on status/badge elements | Only on `<code>`, `<pre>`, `<kbd>`, `<samp>` — never on labels or cards |
 
 **Golden rule:** if an element is not in the original brief, it does not belong in DESIGN.md.
 
@@ -139,7 +144,138 @@ python3 scripts/check.py --gate 1   # Validate DESIGN.md
 
 ---
 
-### Phase 1 — Design Contract (the "Brain")
+## §0 — Prerequisites and Mandatory Declarations
+
+> **This section runs before any code.** Violating §0 invalidates all subsequent phases.
+
+### §0a — Stack declaration (mandatory at session start)
+
+Before writing any code, declare the stack explicitly in your first response:
+
+- **Vanilla HTML/CSS/JS** → CSS custom properties mandatory (`--primary`, `--background`…), no framework, no Tailwind, no shadcn/ui
+- **React / Next.js** → shadcn/ui **mandatory** for all UI primitives, Tailwind classes in multiples of 8 only (no arbitrary values like `p-[11px]`)
+
+Any session producing code without having declared the stack first is invalid.
+
+### §0b — Absolute interdictions (all stacks, no exception)
+
+The following patterns are **never allowed** regardless of stack, project type, or any other justification. `detect_ai_slop.py` will catch them all as **errors**:
+
+| Pattern group | Forbidden examples | Fix |
+|---|---|---|
+| **G1** System status badge | `SYS_ACTIVE`, `SYS_STATUS: ONLINE`, `NODE_STATUS` | Remove entirely |
+| **G2** Operational status pills | `OPTIMAL`, `STABLE`, `CHARGE`, `OFFLINE` in pill/badge shape | Sentence-case text, no pill |
+| **G3** Machine IDs in UI | `ID: VALVE_01`, `ID: FAN_01` visible to user | Human-readable name from data model |
+| **G4** Fake system console | `[17:30:00] SYSTEM:`, `TELEMETRY:`, `Console Système` section | Remove whole section |
+| **G5** ALL_CAPS operational labels | `PILOTE AUTOMATIQUE`, `AUTOMATIQUE (FERMÉ)`, `ACTIF - 40%` | Sentence case |
+| **G6** Monospace on UI elements | `font-family: monospace` on labels, badges, cards | Only on `<code>` `<pre>` `<kbd>` `<samp>` |
+| **G7** Unsolicited animations | `@keyframes pulse`, `pulse-ring`, `typewriter` | Remove unless in brief |
+| **G8** Grid/particle backgrounds | `repeating-gradient` dot grid, `particles.js` | Solid background |
+| **G9** AI buzzwords in copy | `premium`, `moderne`, `élégant`, `innovant`, `futuriste` | Precise descriptions with concrete benefits |
+| **A1** Emojis in UI chrome | `✨ Nos fonctionnalités`, `🚀 Démarrer` in headings/buttons | Inline SVG or nothing |
+| **A2** Hardcoded fake stats | `10,000+ utilisateurs`, `99.9% uptime` in HTML | Load from real API/CMS or remove |
+| **A3** Invented trusted-by section | `<section class="trusted-by">` with made-up logos | Remove entire section — only with real partner data |
+| **A4** Hardcoded testimonials | `<blockquote>` with fictitious Sarah CEO | Remove — only with real CMS/API data |
+| **A5** Placeholder text | `Lorem ipsum`, `Votre texte ici` | Real project copy |
+| **A6** Placeholder images | `src="https://picsum.photos/400/300"` | Real project asset |
+| **B4** `!important` on layout | `margin: 0 !important`, `display: flex !important` | Fix cascade specificity — never patch with !important |
+| **B5** Arbitrary z-index | `z-index: 9999`, `z-index: 99999` | Documented scale in DESIGN.md §5 |
+| **B6** Hardcoded hex in CSS | `color: #3B82F6` bypassing custom properties | `color: var(--primary)` from DESIGN.md §2 |
+| **B7** Blue→purple hero gradient | `linear-gradient(135deg, #3B82F6, #8B5CF6)` on `.hero` | Project-specific gradient from DESIGN.md §2 |
+| **B8** Glassmorphism spam | `backdrop-filter: blur()` on 3+ non-modal elements | Reserve for modals/dropdowns only |
+| **C1** `<img>` without `alt` | `<img src="..." />` — no alt attribute | `alt="description"` or `alt=""` for decorative |
+| **C2** `<button>` without `type` | `<button>Envoyer</button>` | Always `type="button"` or `type="submit"` |
+| **C5** `console.log` in delivered code | Debug logs left in production files | Remove or guard with `NODE_ENV === 'development'` |
+| **C6** Unresolved `TODO`/`FIXME` | `// TODO: implémenter la vraie logique` | Resolve or document in README, remove inline comment |
+| **C7** `font-size` in `px` on `body`/`html` | `body { font-size: 16px }` — WCAG 1.4.4 | `font-size: 100%` or `font-size: 1rem` |
+| **H1** Missing `<meta viewport>` | `<head>` without `<meta name="viewport">` | Add `<meta name="viewport" content="width=device-width, initial-scale=1">` |
+| **D1** Scope creep | Pages/features not in brief (Dashboard, Admin…) | Implement only what the brief explicitly specifies |
+| **D2** Unauthorised renaming | Renaming `UserCard` → `ProfileCard` without instruction | Names defined in the brief are immutable |
+
+### §0c — Mandatory deliverables before Phase 1
+
+1. Read `DESIGN.md` in full
+2. Declare the stack (see §0a)
+3. Run `python3 scripts/check.py --gate 0`
+4. Run `python3 scripts/check.py --gate 1`
+5. Create `structural-lock.md` with 3 structural decisions (see Phase 2a)
+6. Run `python3 scripts/check.py --gate 2`
+7. Confirm scope: list every page/component you will implement and verify each one is in the brief
+8. Confirm responsive: declare the breakpoints you will implement (minimum: 375px mobile + 1280px desktop)
+
+No code before gate 2 is green and scope/responsive are declared.
+
+### §0d — If `detect_ai_slop.py` returns violations
+
+1. Read the full `--json` output
+2. For each violation: apply `fix_instruction` precisely on the target file
+3. Re-run: `python3 scripts/detect_ai_slop.py --design DESIGN.md --code . --json`
+4. **Maximum 3 iterations** — if violations persist after 3 rounds: STOP, report to human
+
+---
+
+### §0e — Style Anti-Monotony Protocol (mandatory — run BEFORE writing any code)
+
+> **Why this exists.** Every AI model defaults to the same visual template: dark hero with blue→purple gradient, Inter + Poppins fonts, 3-column card grid, glassmorphism panels, testimonials, blue CTA. The result is a site that looks identical to 10,000 others. This protocol is the only guard against it.
+
+#### Step 1 — Choose a design archetype explicitly
+
+Before any code, state which archetype from `references/design-archetypes.md` you are targeting. The choice must be justified by the brief:
+
+| If the brief mentions… | Default archetype to consider |
+|---|---|
+| SaaS, API tool, developer product | §6 Technical/Monochrome OR §1 Swiss |
+| Finance, insurance, legal | §3 Luxury/Restrained OR §2 Editorial |
+| Wellness, food, craft, sustainability | §5 Organic/Hand-crafted |
+| Creative agency, portfolio, cultural | §2 Editorial OR §4 Brutalist |
+| Analytics, monitoring, data tool | §8 Data/Dashboard |
+| Game, entertainment, community | §7 Playful/Expressive |
+| Fashion, luxury goods, premium brand | §3 Luxury/Restrained |
+| Retro/niche/experimental | §9 Retro/Nostalgic |
+| Design system, product OS | §10 Material/Tactile |
+
+You MUST quote this in your first response:
+```
+Archetype selected: §6 Technical/Monochrome
+Reason: The brief describes a developer CLI tool — monochrome palette, dense typography, and
+code-adjacent aesthetics are the closest match to real products in this space (Vercel, Linear).
+```
+
+#### Step 2 — Run the uniqueness audit before delivery
+
+After code is written but BEFORE final gate:
+
+```bash
+python3 scripts/audit_style_uniqueness.py --path ./src
+```
+
+- **Score 0–40** → OK — continue to `check.py --final`
+- **Score 41–65** → WARNING — fix flagged signals, then re-run
+- **Score 66–100** → BLOCKED — design is a clone of the Generic AI Template. Do not deliver.
+
+#### Forbidden style combinations (auto-signals of Generic AI Template)
+
+| Signal | Code | Why blocked |
+|---|---|---|
+| Blue→purple gradient on `.hero` | T1 | Most recognizable AI template signature — detected in millions of outputs |
+| Inter + Poppins both present | T2 | Default AI font combination — signals template thinking |
+| `.testimonial-card` + `.trusted-by` | T3 | Fabricated social proof — blocks if not in brief |
+| `backdrop-filter: blur()` on 3+ elements | T4 | Glassmorphism spam — over-used since 2022 |
+| All 4 generic sections present | T5 | Hero+Features+Testimonials+CTA without brief justification |
+| `@keyframes float` or `pulse` unsolicited | T9 | Decorative animations not in brief |
+| `color: #3B82F6` hardcoded | T12 | Tailwind blue-500 as default AI primary |
+
+#### Differentiation checklist (at least 2 must be true)
+
+- [ ] Primary color is NOT blue, purple, or their direct derivatives
+- [ ] At least ONE unusual structural element (split layout, sidebar-first, diagonal section, full-bleed type)
+- [ ] Font pairing is NOT Inter+Poppins or Inter+Roboto
+- [ ] Hero section does NOT have a gradient background
+- [ ] Number of sections ≤ brief specification (no added sections)
+
+---
+
+## Phase 1 — Design Contract (the "Brain")
 
 The final `DESIGN.md` must be complete before any code. Minimum requirements:
 
@@ -231,13 +367,60 @@ Validation loop: fix → rerun audit → repeat until zero defect.
 
 ### Phase 5 — Automated Validation (mandatory before delivery)
 
-Run the final gate — it orchestrates `detect_ai_slop` → `audit_spacing` → `validate_design` → `diff_design_vs_code` in sequence:
+Run the final gate — it orchestrates all 5 validators in sequence:
+
+| Step | Tool | What it checks |
+|---|---|---|
+| 1 | `detect_ai_slop.py` | G1-G9 + A1-A6 + B4-B8 + C1-C7 + H1 + D1-D3 patterns in HTML/CSS/JS |
+| 2 | `audit_spacing.py` | 8px grid violations in CSS |
+| 3 | `validate_design.py` | DESIGN.md contract, WCAG AA contrast, §4 type ranges |
+| 4 | `diff_design_vs_code.py` | Colors, fonts, animations match between DESIGN.md and code |
+| 5 | `audit_accessibility.py` | WCAG 2.1 AA — img alt, button type, input labels, div onclick, html lang, viewport meta |
+| 6 | `audit_style_uniqueness.py` | Generic AI template detection — score must be ≤ 65 |
 
 ```bash
 python3 scripts/check.py --final --code ./src
+python3 scripts/check.py --final --code ./src --verbose   # shows fix_instructions on failure
 ```
 
-If the gate fails → fix immediately by consulting `references/antipatterns-guide.md` → rerun. **Any output not validated by the full gate is rejected.**
+> **Visual audit (separate — requires a running server):** `visual_audit.py` is NOT part of `check.py --final` because it needs a live URL. Run it manually after `check.py --final` passes:
+> ```bash
+> python3 scripts/visual_audit.py --url http://localhost:3000 --output ./audit-results
+> ```
+> It captures 4 breakpoints (375/768/1280/1920px) and audits the real rendered DOM for spacing, fonts, status badges, and A-group slop that regex cannot catch in static files.
+
+If the gate fails → **do not patch files manually**. Go to Phase 5b below.
+
+---
+
+### Phase 5b — Self-Correction Loop (triggered if Phase 5 fails)
+
+When `check.py --final` reports violations, run the detector in JSON mode to get machine-readable fix instructions:
+
+```bash
+python3 scripts/detect_ai_slop.py --design DESIGN.md --code . --json
+```
+
+The output is a JSON object with a `violations` array. Each entry contains:
+
+| Field | Content |
+|---|---|
+| `file` | The exact file to open |
+| `type` | Violation category |
+| `message` | What was detected |
+| `fix_instruction` | The **exact action to perform** — no interpretation needed |
+
+**Correction protocol — follow in order:**
+
+1. Read the full JSON output
+2. For each violation: open `file`, locate the element described in `message`, apply `fix_instruction` **precisely** — no improvisation, no scope creep beyond the instruction
+3. Re-run: `python3 scripts/detect_ai_slop.py --design DESIGN.md --code . --json`
+4. Repeat until `"passed": true` — **maximum 3 iterations**
+5. Once `"passed": true` → re-run `python3 scripts/check.py --final --code .`
+
+**Hard stop:** if violations persist after 3 iterations, stop. Report the unresolved violations with their `fix_instruction`. Do not deliver.
+
+> **Why this protocol exists.** A regex-based auto-fixer would patch HTML but leave orphaned CSS rules, miss JS references, or corrupt adjacent structure. The model executing this skill has full context — it applies fixes semantically, not mechanically. The JSON output is the interface between the detector (mechanical) and the fixer (the model itself).
 
 ---
 
@@ -266,8 +449,9 @@ If the gate fails → fix immediately by consulting `references/antipatterns-gui
 | `data/pttrns-patterns.csv` | 50 Pttrns mobile UX pattern categories with anatomy — queryable via `--domain pttrns` |
 | `data/page-flows-patterns.csv` | 97 Page Flows end-to-end mobile user flows (onboarding, login, checkout, booking, cancellation, verification…) — queryable via `--domain page-flows` |
 | `scripts/validate_design.py` | DESIGN.md validation + WCAG AA + §4 ranges + §10 Three.js |
-| `scripts/detect_ai_slop.py` | Antipattern detection in code |
-| `scripts/audit_spacing.py` | 8px grid audit |
-| `scripts/visual_audit.py` | Playwright visual audit (4 breakpoints) |
+| `scripts/detect_ai_slop.py` | G1-G9 + A1-A6 + B4-B5 + C1-C7 + D1-D3 antipattern detection in HTML/CSS/JS |
+| `scripts/audit_spacing.py` | 8px grid audit on CSS files |
+| `scripts/audit_accessibility.py` | WCAG 2.1 AA — img alt, button type, input labels, div onclick, html lang, title, empty links |
+| `scripts/visual_audit.py` | Playwright visual audit — 4 breakpoints, real DOM, rendered slop detection |
 | `scripts/diff_design_vs_code.py` | Diff DESIGN.md ↔ code (colors, fonts, animations) |
 | `.slop-ignore` | Whitelist against false positives for detect_ai_slop.py |
