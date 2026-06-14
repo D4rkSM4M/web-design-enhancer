@@ -288,7 +288,7 @@ The final `DESIGN.md` must be complete before any code. Minimum requirements:
 - **§6 Components**: max 3 variants per type
 - **§7 Animations**: ≤ 400ms, mandatory `prefers-reduced-motion` mention
 - **§8 Dark Mode**: mandatory if main background is dark — surface, secondary-text, dark-border documented
-- **§9 Mobile** *(optional — mandatory if a native app is in scope)*: touch targets ≥ 44pt iOS / 48dp Android, safe areas, native units
+- **§9 Mobile** *(optional — mandatory if a native app is in scope)*: touch targets ≥ 44pt iOS / 48dp Android, safe areas, native units. For native targets, run `python3 scripts/audit_mobile.py --path ./<app-src>` (Phase 5, separate from `check.py --final`) and clear all M1/M2 blockers — see `references/mobile-beauty.md` for per-platform gestures
 - **§10 Three.js** *(optional — mandatory if a WebGL scene is in scope)*: pixel ratio cap, dispose strategy, WebGL fallback — see `references/threejs-best-practices.md`
 
 Validate before continuing:
@@ -463,6 +463,8 @@ The output is a JSON object with a `violations` array. Each entry contains:
 | `references/gsap-best-practices.md` | GSAP guide |
 | `references/threejs-best-practices.md` | Three.js guide — critical WebGL antipatterns (§10) |
 | `references/mobile-references.md` | Mobile UX references — open CSV index + walled sources (Mobbin / Page Flows / Screenlane) |
+| `references/mobile-beauty.md` | Native signature gestures + hard rules (touch targets, safe areas, nav) per platform, mapped to mobile-audit dimensions |
+| `scripts/audit_mobile.py` | Native craft + mobile gates for SwiftUI / Compose / Flutter / React Native — scores M1-M5, hard-blocks sub-min touch targets and missing safe areas |
 | `data/apple-hig-patterns.csv` | 77 Apple HIG component anatomies (iOS / iPadOS / macOS / watchOS / tvOS / visionOS / CarPlay) — queryable via `--domain apple-hig` |
 | `data/material-design-3-patterns.csv` | 155 Material Design 3 component anatomies, screen patterns, layout/motion/branding tokens (Android / cross-platform) — queryable via `--domain material-design-3` |
 | `data/pttrns-patterns.csv` | 50 Pttrns mobile UX pattern categories with anatomy — queryable via `--domain pttrns` |
