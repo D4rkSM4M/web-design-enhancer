@@ -1,6 +1,6 @@
 # web-design-enhancer-pro
 
-**Eliminates AI bad habits in web design.** Automatically validates, blocks, and fixes generic AI model outputs before delivery.
+**Eliminates AI bad habits in web design — and enforces beauty.** Automatically validates, blocks, and fixes generic AI model outputs before delivery, on both web and mobile.
 
 ---
 
@@ -11,7 +11,9 @@ By default, every AI generates the same website: dark hero + blue→purple gradi
 It forces the AI to:
 1. **Choose a visual style** adapted to the project (not the default template)
 2. **Validate the design** against a DESIGN.md contract
-3. **Block delivery** if the result looks like a generic template
+3. **Block delivery** if the result looks like a generic template — *or* if it is technically clean but flat and soulless
+
+The two sides work together: an **anti-template** gate penalises generic slop, and a **Beauty Score** gate rewards genuine craft. A vision pass then judges whether the rendered result actually *reads as human-made*.
 
 ---
 
@@ -99,6 +101,18 @@ python3 scripts/check.py --final --code ./src
 
 ---
 
+## Mobile & vision (beyond the 7 web gates)
+
+| Tool | What it does |
+|---|---|
+| `audit_mobile.py` | Native mobile audit (SwiftUI / Jetpack Compose / Flutter / React Native). **Hard-blocks** touch targets < 44pt (M1) and missing safe-area handling (M2). |
+| `aesthetic_review.py` | Vision judgment of the rendered design — 7 dimensions including a human-vs-AI tell. Runs in `--mode agent` (the executing model uses its own vision, no API key) or `--mode api` (OpenAI / Anthropic). |
+| `visual_audit.py` | Playwright capture at 4 breakpoints, feeding the vision review. |
+
+→ References: [`references/beauty-gestures.md`](references/beauty-gestures.md) · [`references/mobile-beauty.md`](references/mobile-beauty.md)
+
+---
+
 ## Forbidden patterns (§0b)
 
 The AI can **never** produce these elements, regardless of the project:
@@ -124,26 +138,35 @@ The AI can **never** produce these elements, regardless of the project:
 ```
 web-design-enhancer-pro/
 ├── SKILL.md                          # Full skill instructions
+├── CHANGELOG.md                      # Version history
 ├── scripts/
-│   ├── check.py                      # Orchestrator for the 6 gates
+│   ├── check.py                      # Orchestrator for the 7 gates (+ mobile & vision)
 │   ├── detect_ai_slop.py             # AI pattern detector (G/A/B/C/D/H)
 │   ├── audit_accessibility.py        # WCAG 2.1 AA
 │   ├── audit_spacing.py              # 8px grid
 │   ├── audit_style_uniqueness.py     # Generic AI Template detector (T1–T12)
 │   ├── audit_beauty.py               # Beauty Score — positive craft floor (D1–D5)
+│   ├── audit_mobile.py               # Native mobile audit (SwiftUI/Compose/Flutter/RN)
+│   ├── aesthetic_review.py           # Vision aesthetic judgment (agent or API mode)
 │   ├── validate_design.py            # DESIGN.md contract validation
 │   ├── diff_design_vs_code.py        # Drift code vs DESIGN.md
-│   └── visual_audit.py               # Playwright 4 breakpoints audit
+│   └── visual_audit.py               # Playwright 4 breakpoints capture
 ├── references/
 │   ├── design-archetypes.md          # The 10 archetypes — full CSS tokens
+│   ├── beauty-gestures.md            # Signature gestures + font pairings per archetype
+│   ├── mobile-beauty.md              # Mobile craft & native conventions
 │   ├── gsap-best-practices.md        # GSAP animations
 │   └── threejs-best-practices.md     # WebGL scenes
 ├── templates/
 │   └── design-md-template.md         # DESIGN.md skeleton
-└── tests/
-    ├── test_audit_accessibility.py   # 33 WCAG tests
-    ├── test_audit_style_uniqueness.py # 35 anti-template tests
-    └── test_detect_domain.py         # 57 domain detection tests
+└── tests/                            # 200 tests
+    ├── test_audit_accessibility.py
+    ├── test_audit_style_uniqueness.py
+    ├── test_audit_beauty.py
+    ├── test_audit_mobile.py
+    ├── test_aesthetic_review.py
+    ├── test_detect_domain.py
+    └── test_detect_slop_falsepos.py  # Calibration wave 3 regression suite
 ```
 
 ---
@@ -152,5 +175,5 @@ web-design-enhancer-pro/
 
 ```bash
 py -m pytest tests/ -v
-# 188 tests — should display 188 passed
+# 200 tests — should display 200 passed
 ```
