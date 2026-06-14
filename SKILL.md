@@ -220,7 +220,9 @@ No code before gate 2 is green and scope/responsive are declared.
 
 #### Step 1 — Choose a design archetype explicitly
 
-Before any code, state which archetype from `references/design-archetypes.md` you are targeting. The choice must be justified by the brief:
+Before any code, state which archetype from `references/design-archetypes.md` you are targeting. The choice must be justified by the brief.
+
+Then open `references/beauty-gestures.md` and commit to that archetype's **signature gestures** + **validated font pairing** — the positive craft moves that lift the Beauty Score (gate 7). Avoiding clichés is not enough; you must add deliberate beauty:
 
 | If the brief mentions… | Default archetype to consider |
 |---|---|
@@ -286,7 +288,7 @@ The final `DESIGN.md` must be complete before any code. Minimum requirements:
 - **§6 Components**: max 3 variants per type
 - **§7 Animations**: ≤ 400ms, mandatory `prefers-reduced-motion` mention
 - **§8 Dark Mode**: mandatory if main background is dark — surface, secondary-text, dark-border documented
-- **§9 Mobile** *(optional — mandatory if a native app is in scope)*: touch targets ≥ 44pt iOS / 48dp Android, safe areas, native units
+- **§9 Mobile** *(optional — mandatory if a native app is in scope)*: touch targets ≥ 44pt iOS / 48dp Android, safe areas, native units. For native targets, run `python3 scripts/audit_mobile.py --path ./<app-src>` (Phase 5, separate from `check.py --final`) and clear all M1/M2 blockers — see `references/mobile-beauty.md` for per-platform gestures
 - **§10 Three.js** *(optional — mandatory if a WebGL scene is in scope)*: pixel ratio cap, dispose strategy, WebGL fallback — see `references/threejs-best-practices.md`
 
 Validate before continuing:
@@ -362,6 +364,21 @@ Inspects on **4 breakpoints** (375 / 768 / 1280 / 1920px). Fix immediately if:
 - **Wonky geometry**: spacings that aren't multiples of 8px
 
 Validation loop: fix → rerun audit → repeat until zero defect.
+
+#### Aesthetic review — the "is it beautiful?" judgment (vision model)
+
+Mechanical audits cannot answer "does this look designed by a human?". After the visual audit is clean, submit the rendered screenshots to a vision model for a scored, structured verdict:
+
+```bash
+python3 scripts/aesthetic_review.py --screenshots ./audit-results --archetype "§3 Luxury"
+# providers: --provider openai (default, gpt-4o) | --provider anthropic (claude-3-5-sonnet)
+# any OpenAI-compatible endpoint: --base-url https://your-endpoint
+# assemble the request without calling the API: --dry-run
+```
+
+It scores 7 dimensions an eye judges in the first seconds (first impression, hierarchy, whitespace/balance, typography, colour harmony, finish, **human-vs-AI tell**), returns an `overall_score`, a `reads_as: human|ai` flag, and ranked fixes. **Score < 60 = BLOCKED** (does not yet read as human-designed); ≥ 75 passes.
+
+> Requires an API key in the environment on the machine running the skill: `OPENAI_API_KEY` (default) or `ANTHROPIC_API_KEY`. This step is intentionally separate from `check.py --final` — like the visual audit, it needs the rendered screenshots.
 
 ---
 
@@ -442,9 +459,12 @@ The output is a JSON object with a `violations` array. Each entry contains:
 | `templates/design-system.css` | Ready-to-customize CSS variables |
 | `references/design-md-spec-v2.md` | Full DESIGN.md format spec |
 | `references/antipatterns-guide.md` | Concrete ❌ vs ✅ examples |
+| `references/beauty-gestures.md` | Per-archetype signature gestures + validated font pairings, mapped to Beauty Score dimensions (the positive recipe for gate 7) |
 | `references/gsap-best-practices.md` | GSAP guide |
 | `references/threejs-best-practices.md` | Three.js guide — critical WebGL antipatterns (§10) |
 | `references/mobile-references.md` | Mobile UX references — open CSV index + walled sources (Mobbin / Page Flows / Screenlane) |
+| `references/mobile-beauty.md` | Native signature gestures + hard rules (touch targets, safe areas, nav) per platform, mapped to mobile-audit dimensions |
+| `scripts/audit_mobile.py` | Native craft + mobile gates for SwiftUI / Compose / Flutter / React Native — scores M1-M5, hard-blocks sub-min touch targets and missing safe areas |
 | `data/apple-hig-patterns.csv` | 77 Apple HIG component anatomies (iOS / iPadOS / macOS / watchOS / tvOS / visionOS / CarPlay) — queryable via `--domain apple-hig` |
 | `data/material-design-3-patterns.csv` | 155 Material Design 3 component anatomies, screen patterns, layout/motion/branding tokens (Android / cross-platform) — queryable via `--domain material-design-3` |
 | `data/pttrns-patterns.csv` | 50 Pttrns mobile UX pattern categories with anatomy — queryable via `--domain pttrns` |
@@ -454,6 +474,7 @@ The output is a JSON object with a `violations` array. Each entry contains:
 | `scripts/audit_spacing.py` | 8px grid audit on CSS files |
 | `scripts/audit_accessibility.py` | WCAG 2.1 AA — img alt, button type, input labels, div onclick, html lang, title, empty links |
 | `scripts/visual_audit.py` | Playwright visual audit — 4 breakpoints, real DOM, rendered slop detection |
+| `scripts/aesthetic_review.py` | Vision-model aesthetic judgment of the rendered screenshots — scores beauty/human-vs-AI, blocks below floor (needs OPENAI_API_KEY or ANTHROPIC_API_KEY) |
 | `scripts/diff_design_vs_code.py` | Diff DESIGN.md ↔ code (colors, fonts, animations) |
 | `scripts/audit_beauty.py` | Beauty Score (0-100) — rewards type-scale contrast, hierarchy, signature colour, spacing rhythm, finition. Blocks below 50 |
 | `.slop-ignore` | Whitelist against false positives for detect_ai_slop.py |
